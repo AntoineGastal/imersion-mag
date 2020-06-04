@@ -105,7 +105,14 @@
 											1: 0.5
 										}
 									},
-									
+
+									horiScroll: {
+										// The multiplier to scroll by. Lower numbers are slower
+										scrollSpeed: 0.15,
+										// How many pixels from the the edge to scroll
+										scrollZone: 100
+									},
+
 									vertScroll: {
 										// The multiplier to scroll by. Lower numbers are slower
 										scrollSpeed: 0.15,
@@ -147,15 +154,15 @@
 						
 						{% block content %}
 						<section class="" style"text-align:center;">
-							<div style="background-image: url('{{ post.thumbnail.src }}');background-size: cover;background-position: center; width:5000px; height:1500px; margin:0 auto;border: solid 5px yellow;"></div>
-							<div id="open" style="background-color:blue;position:fixed;top:0px;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;"> + </div>
+							<div style="background-image: url('{{ post.thumbnail.src }}');background-size: cover;background-position: center; width:3000px; height:1000px; margin:0 auto;border: solid 5px yellow;"></div>
+							<div id="open" style="background-color:#222222;position:fixed;top:0px;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;"> + </div>
 						</section>
 						<section>
 							<div class="container p-md" id="immersion-info" style="height:0px;position:fixed;bottom:0px;width:100%;">
 								<hr/>
-								<h1>{{ post.title }}</h1>
-								<div>{{ post.content }}</div>
-								<p>{{ post.date }}</p>
+								<h1 class="infos" style="opacity:0;">{{ post.title }}</h1>
+								<div class="infos" style="opacity:0;">{{ post.content }}</div>
+								<p class="infos" style="opacity:0;">{{ post.date }}</p>
 								<hr/>
 							</div>
 						</section>
@@ -163,7 +170,7 @@
 						
 						<script>
 							var sound = new Howl({
-								src: [url('http://imersiv.adveris.fr/wp-content/themes/yagami-adveris/web/src/img/global/1.mp3')],
+								src: [url('https://www.imersion.io/wp-content/themes/yagami-adveris/web/src/img/global/1.mp3')],
 								html5: true, // A live stream can only be played through HTML5 Audio.
 								format: ['mp3', 'aac']
 							});
@@ -177,8 +184,20 @@
 							$("#open").on('click', () => {
 								console.log('clic open');        
 								var tlopen = new TimelineLite();
-								tlopen.to("#immersion-info", 0, {height: "300"});
-								$("#immersion-info").toggle();
+								tlopen.to("#immersion-info", 0, {height: "300"})
+								.to("#immersion-info", 0, {opacity: 1})
+								.to("#open", 0, {display: none})
+								.to("#close", 0, {display: })
+								;
+							});
+							$("#close").on('click', () => {
+								console.log('clic open');        
+								var tlopen = new TimelineLite();
+								tlopen.to("#immersion-info", 0, {opacity: 0})
+								.to("#immersion-info", 0, {height: "0"})
+								.to("#close", 0, {display: none})
+								to("#open", 0, {display:})
+								;
 							});
 						</script>
 						

@@ -15,52 +15,12 @@
         {% for key, value in posts %}
         <div class="row" data-kira-timeline> 
             <div class="col-sm-12">
-                <a data-kira-item="fadeInUp.parallax.sm"  data-start="1"class="mb-xl" href="{{ value.link }}" style="background-image: url('{{ value.thumbnail.src }}'); background-position: center; background-size: cover;width:80%;height:400px;"></a>		
-                {#{{ global.card({
-                    'image'  : img ~ '/global/theme-sm.jpg',
-                    'terms'  : value.get_terms('types'),
-                    'title'  : value.title,
-                    'date'   : value.date|date('F Y')|capitalize,
-                    'content': value.content|truncate(20, true),
-                    'link'   : value.link
-                }) }}#}
+                <a data-kira-item="fadeInUp.parallax.sm"  data-start="1"class="mb-xl" href="{{ value.link }}" style="background-image: url('{{ value.thumbnail.src }}'); background-position: center; background-size: cover;width:80%;height:400px;"></a>
             </div>
         </div>
         {% endfor %}
 
-        
-        {#
-            |
-            | Section Content
-            |------------------
-            #}
-            {% set titlesType = {
-                'title-xxl' : "Im a XXLarge title",
-                'title-xl' : "Im a XLarge title",
-                'title-lg' : "Im a Large title",
-                'title-md' : "Im a Medium title",
-                'title-sm' : "Im a Small title",
-                'title-xs' : "Im a Xsmall title"
-            } %}
-            {#
-                <section class="section">
-                    <div class="container mb-xl-child-not-last">
-                        {% for class, title in titlesType %}
-                        <div>
-                            <h2 class="{{ class }} mb-md">{{ title }}</h2>
-                            <div class="row">
-                                <div class="col-lg-7">
-                                    <div class="cms">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum vitae sunt rem eveniet, doloremque quaerat! Laboriosam labore sunt porro nostrum eaque vero rerum quo iste. Asperiores harum odio similique aliquid.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                        
-                    </div>            
-                </section>
-            #}    
+         
             </div>
             {% endblock %}
             
