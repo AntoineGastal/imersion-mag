@@ -3,39 +3,22 @@
 | Page Loader
 |--------------
 */
-/*
-|
-| Transition Layer
-|------------------
-*/
-.layer-transition {
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: $light-grey;
-    transform: scaleY(0);
-}
-
-/*
-|
-| Loader
-|---------
-*/
 .page-loader {
     position: fixed;
-    z-index: 1000;
+    background-color: #000000;
+    z-index: 10000;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    display: flex;
     align-items: center;
     justify-content: center;
-    background-color: $light-grey;
-    transform-origin: left top;
+    background-color: $white;
+    display: none;
+
+    &.active{
+        display: flex;
+    }
 
     .item-content{
         width: 100%;
@@ -43,58 +26,23 @@
         text-align: center;
     }
 
-    .item-logo {
-        width: 180px;
+    .item-loadbar{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
         margin: auto;
-        opacity: 0;
+        
 
-        @extend .svg-parent;
-
-        svg{
-            g{
-                //fill: $white;
-            }
-        }
-    }
-
-    .loader-circle {
-        position: relative;
-        width: 70px;
-        height: 70px;
-        margin: auto;
-
-        svg {
+        .item-loadbar-inner{
             width: 100%;
             height: 100%;
-            transform: rotate(-90deg);
-
-            circle {
-                stroke: transparent;
-                stroke-width: 1;
-                cx: 35px;
-                cy: 35px;
-                r: 33px;
-                fill: transparent;
-
-                &.ready {
-                    stroke: $very-dark-grey;
-                }
-            }
+            border-radius: 1px;
+            background-color: $very-dark-grey;
+            animation: loadbar 1.2s cubic-bezier(.92, 0, .09, 1);
+            transform-origin: left top;
         }
-
-        .item-percentage {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translateX(-50%) translateY(-50%);
-            font-size: 12px;
-        }
-    }
-}
-
-.barba-sync-loaded {
-    .page-loader {
-        display: none;
     }
 }
 

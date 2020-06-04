@@ -4,10 +4,34 @@
 |--------------------
 */
 
-#page-home {
-    text-align: center;
-    background-color: #f6f4f2;
-    padding-top:200px;
-    border: solid;
+
+.item-container{
+    padding-top: 8.5vw;
 }
 
+.images-container{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 90px;
+
+    .item-big-img{
+        position: relative;
+    }
+
+    .item-small-img{
+        position: absolute;
+        z-index: 1;
+    }
+
+    .item-big-img{
+        width: 80%;
+    }
+
+    .item-small-img {
+        width: 80%;
+        height:40%;
+        bottom: 0;
+        left: 0;
+    }
+}

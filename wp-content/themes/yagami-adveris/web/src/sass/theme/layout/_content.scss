@@ -28,20 +28,6 @@
 
 /*
 |
-| Svg parent
-|-------------
-*/
-.svg-parent {
-    svg {
-        width: 100%;
-        height: auto;
-    }
-}
-
-
-
-/*
-|
 | Custom card
 |
 | Use in news archive page
@@ -59,6 +45,7 @@
     .card-img-container {
         position: relative;
         overflow: hidden;
+        height: 500px;
 
         &:after {
             content: '';
@@ -82,11 +69,11 @@
 
     /*
     * Card content
-    */
+    */ 
     .card-content {
 
         .date {
-            color: rgba($very-dark-grey, 0.6);
+            color: rgba($light-grey, 0.6);
         }
     }
 
@@ -209,7 +196,7 @@
     }
 
     strong{
-        font-weight: 800;
+        font-weight: 642;
     }
 
     p{
@@ -276,7 +263,7 @@
             transform: translateX(0) translateY(-50px);
 
             @include media-breakpoint-down(md){
-                transform: translateX(60px) translateY(-50px);
+                transform: translateX(60px) translateY(-50px); 
             }
         }
     }
@@ -326,3 +313,83 @@
         display: none;
     }
 }
+
+/*
+|
+| Sections
+|---------------
+*/
+
+.b-white {
+    border-bottom: #F2F2F2 1px solid;
+  }
+
+/*
+|
+| Links
+|---------------
+*/
+.underlinelink {
+    text-decoration: none;
+    border-bottom: #333333 1px dotted;
+  }
+
+  /*
+|
+| Texts variable
+|---------------
+*/
+.heavy{
+    font-variation-settings: 'wght' 542;
+}
+
+/*
+|
+| Locomotive scroll
+|---------------
+*/
+
+  /*! locomotive-scroll v3.3.11 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
+html.has-scroll-smooth {
+    overflow: hidden; }
+  
+  html.has-scroll-dragging {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+  
+  .has-scroll-smooth body {
+    overflow: hidden; }
+  
+  .has-scroll-smooth [locomotive-scroll-container] {
+    min-height: 100vh; }
+  
+  .c-scrollbar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 11px;
+    height: 100vh;
+    transform-origin: center right;
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 0; }
+    .c-scrollbar:hover {
+      transform: scaleX(1.45); }
+    .c-scrollbar:hover, .has-scroll-scrolling .c-scrollbar, .has-scroll-dragging .c-scrollbar {
+      opacity: 1; }
+  
+  .c-scrollbar_thumb {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: black;
+    opacity: 0.5;
+    width: 7px;
+    border-radius: 10px;
+    margin: 2px;
+    cursor: -webkit-grab;
+    cursor: grab; }
+    .has-scroll-dragging .c-scrollbar_thumb {
+      cursor: -webkit-grabbing;
+      cursor: grabbing; }

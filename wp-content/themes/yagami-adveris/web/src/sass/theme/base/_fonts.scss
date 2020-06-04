@@ -52,19 +52,19 @@
 // }
 
 
-//@font-face {
-//    font-family: 'graphik';
-//    src: url('../fonts/graphik/Graphik-Light.eot');
-//    src: url('../fonts/graphik/Graphik-Light.eot?#iefix') format('embedded-opentype'),
-//        url('../fonts/graphik/Graphik-Light.woff2') format('woff2'),
-//        url('../fonts/graphik/Graphik-Light.woff') format('woff'),
-//        url('../fonts/graphik/Graphik-Light.ttf') format('truetype');
-//    font-weight: 200;
-//    font-style: normal;
-//    font-stretch: normal;
-//}
+@font-face {
+    font-family: 'graphik';
+    src: url('../fonts/graphik/Graphik-Light.eot');
+    src: url('../fonts/graphik/Graphik-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/graphik/Graphik-Light.woff2') format('woff2'),
+        url('../fonts/graphik/Graphik-Light.woff') format('woff'),
+        url('../fonts/graphik/Graphik-Light.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-stretch: normal;
+}
 
-/*@font-face {
+@font-face {
     font-family: 'graphik';
     src: url('../fonts/graphik/Graphik-Regular.eot');
     src: url('../fonts/graphik/Graphik-Regular.eot?#iefix') format('embedded-opentype'),
@@ -101,50 +101,19 @@
 }
 
 @font-face {
-    font-family: 'canela';
-    src:
-        url('../fonts/canela/Canela-Regular.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/canela/Canela-Regular.otf') format('opentype'),
-        url('../fonts/canela/Canela-Regular.woff') format('woff'),
-        url('../fonts/canela/Canela-Regular.ttf') format('truetype'),
-        url('../fonts/canela/Canela-Regular.svg#Canela-Regular') format('svg');
+    font-family: 'inter';
+    src: //url('../fonts/inter/inter.woff2') format('woff2-variations'), 
+        //url('../fonts/inter/inter.woff') format('woff'),
+        url('../fonts/inter/inter.ttf') format('truetype-variations');
+    font-weight: 1 999;
+    font-variation-settings: 'wght' 400, 'wdth' 300;
+}
+
+@font-face {
+    font-family: 'hikou-outline';
+    src: url('../fonts/hikou/hikou-outline.woff2') format('woff2'), 
+        url('../fonts/hikou/hikou-outline.woff') format('woff'),
+        url('../fonts/hikou/hikou-outline.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
-}
-
-@font-face {
-    font-family: 'canela';
-    src:
-        url('../fonts/canela/Canela-Thin.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/canela/Canela-Thin.otf') format('opentype'),
-        url('../fonts/canela/Canela-Thin.woff') format('woff'),
-        url('../fonts/canela/Canela-Thin.ttf') format('truetype'),
-        url('../fonts/canela/Canela-Thin.svg#Canela-Thin') format('svg');
-    font-weight: 200;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'canela';
-    src:
-        url('../fonts/canela/Canela-Light.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/canela/Canela-Light.otf') format('opentype'),
-        url('../fonts/canela/Canela-Light.woff') format('woff'),
-        url('../fonts/canela/Canela-Light.ttf') format('truetype'),
-        url('../fonts/canela/Canela-Light.svg#Canela-Light') format('svg');
-    font-weight: 300;
-    font-style: normal;
-}
-*/
-@font-face {
-    font-family: 'eb-garamond';
-    src:
-        url('../fonts/eb-garamond/EBGaramond-VariableFont_wght.ttf') format('truetype');
-    font-weight: 1 900;
-}
-@font-face {
-    font-family: 'work-sans';
-    src:
-        url('../fonts/work-sans/WorkSans-VariableFont_wght.ttf') format('truetype');
-    font-weight: 1 999;
 }

@@ -1,0 +1,59 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <div id="page-news-archive" class="page-offset">
+
+        {#
+        |
+        | Section Banner
+        |-----------------
+        #}
+        <section class="section pb-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-10">
+                        <div class="row">
+                            <div class="col-xl-3">
+                                <h1 class="title-xl">{{ post.title }}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {#
+        |
+        | Section news
+        |---------------
+        #}
+        <section class="section">
+            <div class="container">
+                <div class="row loaded-posts mb-lg-child">
+                    {% for key, value in posts %}
+                        <div class="col-lg-4 col-md-6">
+                            {{ global.card({
+                                'image'  : value.thumbnail.src,
+                                'terms'  : value.get_terms('category'),
+                                'title'  : value.title,
+                                'date'   : value.date|date('d.m.Y')|capitalize,
+                                'content': value.content|truncate(20, true),
+                                'link'   : value.link
+                            }) }}
+                        </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="load-more-container mt-md">
+                    <div class="ta-c load-more">
+                        <a href="#" class="fs-xs tt-u load-more-btn">Charger plus</a>
+                    </div>
+                    <div class="loader-container ta-c">
+                        <p class="mb-0">Nous recherchons vos articles...</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>  
+{% endblock %}

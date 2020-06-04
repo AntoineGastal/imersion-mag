@@ -1,0 +1,115 @@
+<!doctype html>
+<html {{ site.language_attributes }}>
+    {#
+    |
+    | Head
+    |-------
+    #}
+    <head>
+        {% include '_layouts/_head.twig' %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    
+    {#
+    |
+    | Import macros
+    |----------------
+    #}
+    {% import '_macros/global.twig' as global %}
+    
+    {#
+    |
+    | Body
+    |-------
+    #}
+    <body class="{{ body_class }}" data-barba="wrapper">
+        <div class="layer-transition"></div>
+        <div data-barba="container" data-barba-namespace="{{ barba_namespace }}" style="overflow:scroll !important">
+            {#
+            |
+            | Loader
+            |---------
+            #}
+            <div class="page-loader">
+                <div class="item-content">
+                    <div class="loader-circle mb-md">
+                        <svg>
+                            <circle/>
+                        </svg>
+                        <span class="item-percentage"><span>0</span> %</span>
+                    </div>
+                    <div class="item-logo">{{ function([services, 'svg'], img ~ '/icon/logo.svg') }}</div>
+                </div>
+            </div>
+
+            {#
+            |
+            | Site container
+            |-----------------
+            #}
+            <div class="site-container locomotive-scroll-container">
+                {#
+                |
+                | Header
+                |---------
+                #}
+                {% block header %}
+                    {% include '_layouts/header.twig' %}
+                {% endblock %}
+
+                {#
+                |
+                | Content
+                |---------
+                #}
+                {% block content %}{% endblock %}
+
+                {#
+                |
+                | Footer
+                |---------
+                #}
+                {% block footer %}
+                    {% include '_layouts/footer.twig' %}
+                {% endblock %}
+
+                {#
+                |
+                | Cookie
+                |---------
+                #}
+                {% include '_includes/cookie.twig' %}
+            </div>
+        </div>
+
+        {#
+        |
+        | Debug Tool
+        |------------
+        #}
+        {% if debug %}
+            {% include '_debug-tool/debug-tool.twig' %}
+        {% endif %}
+
+
+        {#
+        |
+        | Javascripts
+        |--------------
+        #}
+        {% block javascripts %}
+            <script src="{{ dist }}/js/app.js"></script>
+            
+            {% if debug %}
+                <script src="{{ dist }}/js/debug_tool.js"></script>
+            {% endif %}
+        {% endblock %}
+	    
+        {#
+        |
+        | WP Footer
+        |--------------
+        #}
+        {{ wp_footer }}
+    </body>
+</html>

@@ -1,12 +1,16 @@
 {% import '_macros/global.twig' as global %}
 
 {% for key, value in posts %}
-    <div class="col-lg-4 col-md-6">
+    {#<div class="col-lg-4 col-md-6">#}
+    <div class="col-lg-12 col-md-12">
         {{ global.card({
             'image'  : value.thumbnail.src,
             'terms'  : value.get_terms('category'),
             'title'  : value.title,
             'date'   : value.date|date('d.m.Y')|capitalize,
+            'contribution_by'  : value.contribution_by,
+            'contributor_link'  : value.contributor_link,
+            'external_link'  : value.external_link,
             'content': value.content|truncate(20, true),
             'link'   : value.link
         }) }}
@@ -18,3 +22,23 @@
     <div class="no-more-post"></div>
 </div>
 {% endif %}
+
+{#
+{% for post in posts %}
+    <article class="article--item">
+        <div class="row">
+            <div class="col-lg-5 c-main-green article--content pr-xl md-down-pb-lg">
+                <div data-kira-timeline>
+                    <h2 class="fw-100 mb-xs title-md tt-u" data-kira-item="fadeInUp.parallax.xs">{{ post.title }}</h2>
+                    <time class="d-b ff-custom fs-sm mb-xs" data-kira-item="fadeInUp.parallax.xs">{{ post.date|date("d/m/Y") }}</time>
+                    <p class="mb-md" data-kira-item="fadeInUp.parallax.xs">{{ post.post_excerpt }}</p>
+                    <a href="{{ post.get_permalink() }}" class="main--btn c-main-green" title="{{ post.title }}" data-kira-item="fadeInUp.parallax.xs">LIRE L’ARTICLE</a>
+                </div>
+            </div>
+            <div class="col-lg-7 bg-img-sm p-r o-h" data-kira-timeline>
+                <div class="img--wrapper" style="background-image: url({{ Image(post.thumbnail).src }});" data-kira-item="zoomOut.parallax"></div>
+            </div>
+        </div>
+    </article>
+{% endfor %}
+#}

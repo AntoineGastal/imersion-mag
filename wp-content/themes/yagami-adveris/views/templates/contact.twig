@@ -14,7 +14,7 @@
                     <div class="col-xl-10">
                         <div class="row">
                             <div class="col-xl-3">
-                                <h1 class="title-xxl mb-lg">{{ post.title }}</h1>
+                                <h1 class="title-xl mb-lg">{{ post.title }}</h1>
                             </div>
                         </div>
                         <div class="row">
@@ -55,6 +55,10 @@
                                 <div class="gravity-form-bootstrap materialize-form contact-form">
                                     {{ function('do_shortcode', post.get_field('contact_form_shortcode')) }}
                                 </div>
+
+                                <select name="" id="">
+                                    <option value="1">1</option>
+                                </select>
                             </div>
                         </div>
                     </div>

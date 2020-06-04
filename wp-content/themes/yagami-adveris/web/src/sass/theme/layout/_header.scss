@@ -18,8 +18,11 @@
 
 #header{
     width: 100%;
-    position: absolute;
-    z-index: 10;
+    //height:100px;
+    height:0px;
+    overflow:hidden;
+    position: fixed;
+    z-index: 3;
 
     .header-container{
         @extend .container;
@@ -28,7 +31,6 @@
         justify-content: space-between;
         padding-top: 25px;
         padding-bottom: 25px;
-        
 
         .item-logo{
             svg{
@@ -95,17 +97,22 @@
     }
 
     .btn-menu {
-        position: relative;
+        position: fixed;
+        bottom:40px;
+        right:40px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         //width: 56px;
         //height: 56px;
         margin-top: 5px;
-        padding: 0;
+        padding: 20px;
         border: none;
+        border-radius:30px;
         background-color: transparent;
         cursor: pointer;
+        background-color:#F2F2F2;
+
 
         &>.item-burger {
             display: block;
@@ -125,11 +132,14 @@
         }
 
         @include media-breakpoint-up(xl) {
-            display: none;
+            //display: none;
         }
     }
         
 }
+
+
+
 
 /*
 |
@@ -139,8 +149,8 @@
 #mobile-menu{
     position: fixed;
     z-index: 9;
-    top: 0;
-    left: 0;
+    bottom: 40;
+    left: 40;
     display: flex;
     align-items: center;
     width: 100%;
@@ -191,7 +201,7 @@
                 font-size: 25px;
 
                 &:not(:last-child){
-                    margin-right: 25px;
+                    margin-right: 25px; 
                 }
             }
 

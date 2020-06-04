@@ -58,18 +58,23 @@
 	{% set date    = params.date %}
 	{% set title   = params.title %}
 	{% set content = params.content %}
-	{% set terms   = params.terms %}
+    {% set terms   = params.terms %}
+    {% set contribution_by   = params.contribution_by %}
+    {% set contributor_link   = params.contributor_link %}
+    {% set external_link   = params.external_link %}
 
-	<article class="custom-card">
-        <a href="{{ link }}" title="{{ title }}" class="custom-card-link">
+	<article class="custom-card mb-xxl" data-scroll data-scroll-speed="0.9" data-kira-item="fadeInUp.parallax.sm">
+        {#<a href="{{ link }}" title="{{ title }}" class="custom-card-link">#}
             <div class="card-img-container">
                 <div class="card-img bg-cover" style="background-image: url('{{ image }}')"></div>
             </div>
             <div class="card-content md-up-pr-lg pt-md">
-                <span class="fs-xs ls-xs mb-sm">{{ date }}</span>
-                <h2>{{ title }}</h2>
+                <span class="fs-xs ls-xs mb-sm">{{ date }} - <a href="{{ contributor_link }}" target="_blank">{{ contribution_by }} <i class="fal fa-external-link ml-sm"></i></a></span>
+                <h2 class="mb-md">{{ title }}</h2>
+                <p>{{ content }}</p>
+                <p><i class="fal fa-long-arrow-right mr-sm"></i> <a href="{{ external_link }}" target="_blank">Read more</a></p>
             </div>
-        </a>
+        {#</a>#}
 	</article>
 {% endmacro %}
 
@@ -88,7 +93,7 @@
     <section class="banner {{ classes }}" style="background-image: url('{{ image }}')" data-kira-timeline-onload>
         <div class="item-content">
             <div class="container">
-                <h1 class="title-xxl item-title mb-md" data-kira-item="fadeInUp.parallax.sm"  data-start="0.2">{{ title }}</h1>
+                <h1 class="title-xl item-title mb-md" data-kira-item="fadeInUp.parallax.sm"  data-start="0.2">{{ title }}</h1>
                 <div class="item-text" data-kira-item="fadeInUp.parallax.sm">
                     <div class="row">
                         <div class="col-lg-7">

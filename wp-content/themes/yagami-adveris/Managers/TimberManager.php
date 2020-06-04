@@ -118,7 +118,7 @@ class TimberManager
 		$customContext['clear_head_for_yoast'] = $this->handleHeadForYoast();
         $customContext['google_map_api_key']   = $this->handleGoogleMap();
         $customContext['current_language']     = apply_filters( 'wpml_current_language', NULL );
-        $customContext['languages']            = icl_get_languages('skip_missing=N&orderby=KEY&order=DIR&link_empty_to=str');
+        //ERROR: $customContext['languages']            = if (function_exists('icl_get_languages')) {icl_get_languages('skip_missing=N&orderby=KEY&order=DIR&link_empty_to=str');}
 		$customContext['blog_page_url']        = get_permalink( get_option( 'page_for_posts' ) );
 
 
