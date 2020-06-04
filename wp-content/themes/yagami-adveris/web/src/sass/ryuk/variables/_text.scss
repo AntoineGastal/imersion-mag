@@ -51,7 +51,7 @@ $screen-md-font-size-xl :   $font-size-xl;
 $screen-sm-font-size-xl :   $font-size-xl;
 $screen-xs-font-size-xl :   $font-size-xl;
 
-$font-size-xxl :            50px;
+$font-size-xxl :            36px;
 $screen-lg-font-size-xxl :  $font-size-xxl;
 $screen-md-font-size-xxl :  $font-size-xxl;
 $screen-sm-font-size-xxl :  $font-size-xxl;
@@ -90,7 +90,7 @@ $screen-md-font-size-title-md :   $font-size-title-md;
 $screen-sm-font-size-title-md :   $font-size-title-md;
 $screen-xs-font-size-title-md :   $font-size-title-md;
 
-$font-size-title-lg :             42px;
+$font-size-title-lg :             30px;
 $screen-lg-font-size-title-lg :   $font-size-title-lg;
 $screen-md-font-size-title-lg :   $font-size-title-lg;
 $screen-sm-font-size-title-lg :   $font-size-title-lg;
@@ -102,11 +102,11 @@ $screen-md-font-size-title-xl :   42px;
 $screen-sm-font-size-title-xl :   42px;
 $screen-xs-font-size-title-xl :   32px;
 
-$font-size-title-xxl :            180px;
-$screen-lg-font-size-title-xxl :  140px;
-$screen-md-font-size-title-xxl :  120px;
-$screen-sm-font-size-title-xxl :  100px;
-$screen-xs-font-size-title-xxl :  80px;
+$font-size-title-xxl :            62px;
+$screen-lg-font-size-title-xxl :  50px;
+$screen-md-font-size-title-xxl :  42px;
+$screen-sm-font-size-title-xxl :  36px;
+$screen-xs-font-size-title-xxl :  36px;
 
 
 /*
@@ -115,9 +115,9 @@ $screen-xs-font-size-title-xxl :  80px;
 |----------------
 |
 */
-$font-family-default :    'inter', sans-serif;
-$font-family-custom :     'inter', sans-serif;
-$font-family-extra :      'canela', sans-serif;
+$font-family-default :    'work-sans', sans-serif;
+$font-family-custom :     'eb-garamond', sans-serif;
+$font-family-extra :      'work-sans', sans-serif;
 
 
 /*
@@ -125,7 +125,7 @@ $font-family-extra :      'canela', sans-serif;
 | Font family classes creation
 |-------------------------------
 | How to use: add lines to create more "font family classes" 
-| - Generated classes: .font-{family}
+| - Generated classes: .nt-{family}fo
 | - Exemple: .font-custom
 |
 */
@@ -159,7 +159,7 @@ $letter-spacing-xxl:  6px;
 |--------------
 |
 */
-$line-height-xs  : 0.9;
+$line-height-xs  : 1;
 $line-height-sm  : 1.2;
 $line-height-md  : 1.5;
 $line-height-lg  : 1.6;
@@ -176,7 +176,7 @@ $line-height-xxl : 2;
 $default-font-size   : $font-size-sm;
 $default-color       : $text-color;
 $default-line-height : $line-height-xl;
-$default-font-weight : 202;
+$default-font-weight : 200;
 
 
 /*
@@ -188,6 +188,6 @@ $default-font-weight : 202;
 $default-titles : (
   color       : inherit,
   font-family : $font-family-custom,
-  font-weight : 202,
+  font-weight : 400,
   line-height : 1.2
 );

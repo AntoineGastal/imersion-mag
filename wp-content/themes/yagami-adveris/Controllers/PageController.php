@@ -41,8 +41,8 @@ class PageController extends AppController
         $paged = $this->getPagedArgument();
 
         $args = array(
-            'post_type' => 'post',
-            'posts_per_page' => 4,
+            'post_type' => 'immersions',
+            'posts_per_page' => get_query_var('posts_per_page'),
             'paged' => $paged
         );
 

@@ -20,10 +20,10 @@ export default {
         $.each($map, function () {
             var $map = $(this);
 
-            var map = new customGoogleMap($map, {
-                'markers': $map.find('.marker'),
-                'zoom': 16
-            });
+            // var map = new customGoogleMap($map, {
+            //     'markers': $map.find('.marker'),
+            //     'zoom': 16
+            // });
         });
 
 

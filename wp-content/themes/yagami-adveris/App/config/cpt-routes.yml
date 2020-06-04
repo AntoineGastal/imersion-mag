@@ -8,9 +8,9 @@
 #
 
 #--------------------- Projects ----------------------
-projects:
-  archive: ProjectsController::archive
-  single: ProjectsController::single
+immersions:
+  archive: ImmersionsController::archive
+  single: ImmersionsController::single
   taxs:
-    types: ProjectsController::types
+    types: ImmersionsController::types
 

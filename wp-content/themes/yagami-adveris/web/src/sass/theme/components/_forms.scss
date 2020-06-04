@@ -48,20 +48,26 @@ select{
 |-------------------
 */
 .materialize-form{
-    .materialize-form-group{
+    .materialize-form-group{ 
         position: relative;
         margin-bottom: 25px;
 
         label{
             position: absolute;
+
             top: 0;
             left: 15px;
+
+            font-weight: 400;
+            font-size: 18px;
         }
         input{
-            border: none;
-            border-bottom: 1px $very-dark-grey solid;
-            color: $very-dark-grey;
-            height: 25px;
+            margin-bottom: 35px;
+
+            padding: 7px 0;
+
+            border: 0;
+            border-bottom: 2px solid $light-grey;
         }
 
         &.gfield_error{
@@ -84,13 +90,15 @@ select{
     }
 
     textarea{
-        border: 1px $very-dark-grey solid;
-        height: 120px;
-        padding: 5px 10px;
-        color: $very-dark-grey;
+        border: 2px $light-grey solid;
+        height: 200px;
+        padding: 15px;
+        color: $black;
+        font-size: 18px;
+        border-radius: 2px;
 
-        &.placeholder_disabled{
-            color: $very-dark-grey;
+        &::placeholder{
+            color: $black;
         }
     }
 
@@ -105,15 +113,17 @@ select{
     input[type="submit"]{
         position: relative;
         background-color: transparent;
-        border: none;
-        color: $very-dark-grey;
-        padding: 15px;
+        color: $dark-grey;
+        padding: 15px 30px;
         transition: all 0.3s ease-out;
         text-transform: uppercase;
         cursor: pointer;
-        
+        border: 2px solid $light-grey;
+        border-radius: 2px;
+
         &:hover{
-            color: $very-dark-grey;
+            color: $white;
+            background: $light-grey;
         }
 
     }

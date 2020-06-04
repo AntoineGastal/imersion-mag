@@ -1,24 +1,18 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-	<div id="page-cms">
-
-        {#
-        |
-        | Section Banner
-        |-----------------
-        #}
-        {{ global.banner({
-            'title': post.title,
-            'image': img ~ '/global/theme.jpg'
-        }) }}
-
+	<div id="page-cms" class="page-offset">
 
         {#
         |
         | Section Content
         |-----------------
         #}
+        <section class="section pb-0">
+            <div class="container">
+                <h1 class="title-xxl">{{post.title}}</h1>
+            </div>
+        </section>
         <section class="section">
             <div class="container">
                 <div class="cms">

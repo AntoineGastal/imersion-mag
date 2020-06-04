@@ -67,6 +67,56 @@ export function isValidEmail(email) {
 
 /*
 |
+| LocomotiveScroll
+|-------------------
+*/
+export function updateLocomotiveScroll() {
+    if (window.locomotive != null) {
+        window.locomotive.update();
+    }
+}
+
+export function stopLocomotiveScroll() {
+    if (window.locomotive != null) {
+        window.locomotive.stop();
+    }
+}
+
+export function startLocomotiveScroll() {
+    if (window.locomotive != null) {
+        window.locomotive.start();
+    }
+}
+
+export function scrollTo(target, offset) {
+    if (window.locomotive != null) {
+        window.locomotive.scrollTo(target, offset);
+    }
+}
+
+export function resetLocomotiveScroll() {
+    if (window.locomotive !== null) {
+        window.locomotive.destroy();
+    }
+}
+
+export function initLocomotiveScroll(LocomotiveScroll) {
+    window.locomotive = null;
+
+    if (document.querySelector('.c-scrollbar') !== null) {
+        document.querySelector('.c-scrollbar').remove();
+    }
+
+    window.locomotive = new LocomotiveScroll({
+        el: document.querySelector('.locomotive-scroll-container'),
+        smooth: true,
+        inertia: 0.8
+    });
+}
+
+
+/*
+|
 | Set cookie 
 |------------
 */

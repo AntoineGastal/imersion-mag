@@ -4,8 +4,14 @@
 |--------------------------
 */
 html {
-  box-sizing: border-box;
-  -ms-overflow-style: scrollbar;
+    box-sizing: border-box;
+    -ms-overflow-style: scrollbar;
+
+    cursor: wait;
+
+    &.loaded {
+        cursor: inherit;
+    }
 }
 
 *{
@@ -16,7 +22,7 @@ html {
 *,
 *::before,
 *::after {
-  box-sizing: inherit; 
+  box-sizing: inherit;
 }
 
 body{
@@ -28,7 +34,6 @@ body{
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     overflow-x: hidden;
-    background-color: #000000;
 }
 
 h1, h2, h3, h4, h5, h6{

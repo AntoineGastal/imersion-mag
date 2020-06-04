@@ -1,15 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="68px" height="26px" viewBox="0 0 68 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
-    <g id="Index" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-family="Helvetica" font-size="20" font-weight="normal">
-        <g id="Home-Page" transform="translate(-120.000000, -51.000000)" fill="#141414">
-            <g id="Group-19" transform="translate(120.000000, 50.000000)">
-                <g id="Group-18">
-                    <text id="Yagami">
-                        <tspan x="0" y="19">Yagami</tspan>
-                    </text>
-                </g>
-            </g>
-        </g>
+<svg width="408px" height="78px" viewBox="0 0 408 78" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-family="Yesteryear-Regular, Yesteryear" font-size="150" font-weight="normal">
+        <text id="imersion" fill="#222222">
+            <tspan x="9.46435547" y="72">imersion</tspan>
+        </text>
     </g>
 </svg>

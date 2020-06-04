@@ -1,9 +1,0 @@
-#node_modules
-web/node_modules/
-
-#Ide
-.idea/*
-.DS_Store
-
-#Dist
-web/dist/*

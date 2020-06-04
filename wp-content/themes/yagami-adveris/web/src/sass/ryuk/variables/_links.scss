@@ -28,4 +28,3 @@ $default-link-color-hover:      darken($grey, 15%);
 $links-colors: ();
 $links-colors: map-set-links($links-colors, 'white', $white, $light-grey);
 $links-colors: map-set-links($links-colors, 'black', $black, $grey);
-$links-colors: map-set-links($links-colors, 'very-light-grey', $very-light-grey, $light-grey);

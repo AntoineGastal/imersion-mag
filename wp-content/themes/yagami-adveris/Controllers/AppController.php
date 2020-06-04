@@ -60,7 +60,7 @@ class AppController
     */
     protected function render($template, $datas = null){
         $template_path = Timber::$locations . '/' . $template;
-
+        
         if(is_file($template_path)){
             $context = Timber::get_context();
 
@@ -71,6 +71,8 @@ class AppController
                     }
                 }
             }
+
+            $context['barba_namespace'] = $this->getBarbaNamespace($template);
 
             if(defined('WP_DEBUG') && WP_DEBUG){
                 if(!$this->isAjaxRequest()){
@@ -84,6 +86,27 @@ class AppController
         }
 
         $this->render_method_called = true;
+    }
+
+
+    /**
+     * Method called by render
+    *
+    * getBarbaNamespace() method allows to return barba namespace
+    *
+    *
+    * @param string  $template  Timber template
+    *
+    * @return string barba namespace
+    */
+    protected function getBarbaNamespace($template){
+        $parts     = explode('/', $template);
+        $file      = array_pop($parts);
+        $fileParts = explode('.', $file);
+        $fileName  = $fileParts[0];
+        $namespace = implode('_', $parts) . '_' . $fileName;
+
+        return $namespace;
     }
 
 

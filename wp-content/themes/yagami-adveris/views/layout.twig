@@ -1,16 +1,16 @@
 <!doctype html>
 <html {{ site.language_attributes }}>
-{#
-  |
-  | Head
-  |-------
-  #}
-  <head>
-    {% include '_layouts/_head.twig' %}
+    {#
+    |
+    | Head
+    |-------
+    #}
+    <head>
+        {% include '_layouts/_head.twig' %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
     
-  </head>
-  
-  {#
+    {#
     |
     | Import macros
     |----------------
@@ -18,290 +18,98 @@
     {% import '_macros/global.twig' as global %}
     
     {#
-      |
-      | Body
-      |-------
-      #}
-      <body class="{{ body_class }}">
-        {#
-          |
-          | Loader
-          |---------
-          #}
-          
-          <div id="page-loader" class="page-loader active">
-            <script>
-              if(sessionStorage.getItem('loaded_once') === null){
-                document.getElementById('page-loader').classList.add('active');
-              }
-            </script>
-            <div class="item-content">
-              {#<div class="mb-lg">{{ function([services, 'svg'], img ~ '/icon/logo.svg') }}</div>#}  
-              <div class="item-loadbar">
-                <div class="item-loadbar-inner"></div>
-              </div>
+    |
+    | Body
+    |-------
+    #}
+    <body class="{{ body_class }}" data-barba="wrapper">
+        <div class="layer-transition"></div>
+        <div data-barba="container" data-barba-namespace="{{ barba_namespace }}" style="overflow:scroll !important">
+            {#
+            |
+            | Loader
+            |---------
+            #}
+            <div class="page-loader">
+                <div class="item-content">
+                    <div class="loader-circle mb-md">
+                        <svg>
+                            <circle/>
+                        </svg>
+                        <span class="item-percentage"><span>0</span> %</span>
+                    </div>
+                    <div class="item-logo">{{ function([services, 'svg'], img ~ '/icon/logo.svg') }}</div>
+                </div>
             </div>
-          </div>
-          
-          {#
+
+            {#
             |
             | Site container
             |-----------------
             #}
-            <div class="site-container" locomotive-scroll-container>
-              {#
+            <div class="site-container locomotive-scroll-container">
+                {#
                 |
                 | Header
                 |---------
                 #}
                 {% block header %}
-                {% include '_layouts/header.twig' %}
+                    {% include '_layouts/header.twig' %}
                 {% endblock %}
-                
+
                 {#
-                  |
-                  | Content
-                  |---------
-                  #}
-                  {% block content %}{% endblock %}
-                  {#
-                    |
-                    | Footer
-                    |---------
-                    #}
-                    {% block footer %}
+                |
+                | Content
+                |---------
+                #}
+                {% block content %}{% endblock %}
+
+                {#
+                |
+                | Footer
+                |---------
+                #}
+                {% block footer %}
                     {% include '_layouts/footer.twig' %}
-                    {% endblock %}
-                    
-                    {#
-                      |
-                      | Cookie
-                      |---------
-                      #}
-                      {% include '_includes/cookie.twig' %}
-                    </div>
-                    
-                    {#
-                      |
-                      | Debug Tool
-                      |------------
-                      #}
-                      {% if debug %}
-                      {% include '_debug-tool/debug-tool.twig' %}
-                      {% endif %}
-                      
-                      
-                      {#
-                        |
-                        | Javascripts
-                        |--------------
-                        #}
-                        {% block javascripts %}
-                        
-                        <!-- Animation 3D -->
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/97/three.min.js"></script>
-                        <script src="https://cdn.rawgit.com/josephg/noisejs/master/perlin.js"></script>
-                        
-                        <!--<script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.4.1/dist/locomotive-scroll.min.js"></script>-->
-                        <script src="{{ dist }}/js/app.js"></script>
-                        
-                        <!-- Head recognition -->
-                        <script src="https://unpkg.com/handsfree@6.1.1/dist/handsfree.js"></script>
-                        
-                        {#
-                          |
-                          | HEAD RECOGNITION
-                          |---------
-                          #}
-                          
-                          <script>
-                            let config = {
-                              // Whether Handsfree should automatically start after instantiation
-                              autostart: false,
-                              debugger: {
-                                // Where to inject the debugger into
-                                target: document.body,
-                                // Whether to show or hide the debugger (video feedback)
-                                enabled: true
-                              },
-                              // Which models you want to use
-                              models: {
-                                head: {
-                                  enabled: true,
-                                  // Run this model every x milliseconds (use 0 for every frame)
-                                  throttle: 0
-                                },
-                                bodypix: {
-                                  enabled: false,
-                                  // Run this model every x milliseconds (use 0 for every frame)
-                                  throttle: 0,
-                                  // The inference method to use: ['segmentPerson', 'segmentPersonParts', 'segmentMultiPerson', 'segmentMultiPersonParts']
-                                  method: 'segmentPerson',
-                                  // The method to use to display debugging: ['toMask', 'toColoredPartMask']
-                                  debugMethod: 'toColoredPartMask',
-                                  // @see https://github.com/tensorflow/tfjs-models/tree/master/body-pix#loading-the-model
-                                  modelConfig: {
-                                    architecture: 'ResNet50',
-                                    outputStride: 32,
-                                    quantBytes: 2
-                                  }
-                                }
-                              },
-                              // Configs specific to plugins
-                              plugin: {
-                                head: {
-                                  pointer: {
-                                    // How many pixels to shift the pointer by
-                                    offset: {
-                                      x: 0,
-                                      y: 500
-                                    },
-                                    // A multiplier that determines how sensitive the pointer is
-                                    // .5 is half as sensitive, 2 is twice as much
-                                    speed: {
-                                      x: 1,
-                                      y: 1
-                                    }
-                                  }
-                                },
-                                click: {
-                                  // Morphs to watch for and their required confidences
-                                  morphs: {
-                                    // Right smile (pass 0 to disable this)
-                                    0: 0.5,
-                                    // Left smile (pass 0 to disable this)
-                                    1: 0.5
-                                  }
-                                },
-                                vertScroll: {
-                                  // The multiplier to scroll by. Lower numbers are slower
-                                  scrollSpeed: 0.00001,
-                                  // How many pixels from the the edge to scroll
-                                  scrollZone: 200
-                                }
-                              },
-                              // Head morph activations
-                              // @see https://github.com/handsfree.js/handsfree/wiki/Head
-                              head: {
-                                morphs: {
-                                  threshold: {
-                                    smileRight: 0.7,
-                                    smileLeft: 0.7,
-                                    browLeftDown: 0.8,
-                                    browRightDown: 0.8,
-                                    browLeftUp: 0.8,
-                                    browRightUp: 0.8,
-                                    eyeLeftClosed: 0.4,
-                                    eyeRightClosed: 0.4,
-                                    mouthOpen: 0.3,
-                                    mouthRound: 0.8,
-                                    upperLip: 0.5
-                                  }
-                                }
-                              }
-                            }
-                            const handsfree = new Handsfree(config)
-                            console.log('handsfree:', Object.values(handsfree) );
-                            
-                            // Remember if the user accepted Head tracking
-                            var headDetection = localStorage.getItem('head');
-                            
-                            console.log('headDetection head status: ' + headDetection);
-                            
-                            
-                            if(headDetection != 'stop' )
-                            {
-                              // Start tracking  
-                              handsfree.start();
-                            }
-                            
-                          </script>     
-                          
-                          
-                          {#
-                            |
-                            | VOICE RECOGNITION
-                            |---------
-                            #}
-                            <script>
-                              
-                              var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
-                              var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
-                              var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
-                              var words = ['contact', 'about', 'innovations', 'manifesto', 'blue', 'red', 'yellow'];
-                              var grammar = '#JSGF V1.0; grammar words; public <word> = ' + words.join(' | ') + ' ;'
-                                var recognition = new SpeechRecognition();
-                                var speechRecognitionList = new SpeechGrammarList();
-                                speechRecognitionList.addFromString(grammar, 1);
-                                recognition.grammars = speechRecognitionList;
-                                recognition.continuous = false;
-                                recognition.lang = 'fr-FR';
-                                recognition.interimResults = false;
-                                recognition.maxAlternatives = 1;
-                                var diagnosticshort = document.querySelector('.outputshort');
-                                console.log("recognition var: " + recognition, recognition);
-                                
-                                
-                                recognition.onresult = function(event) {
-                                  // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
-                                  // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
-                                  // It has a getter so it can be accessed like an array
-                                  // The first [0] returns the SpeechRecognitionResult at the last position.
-                                  // Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
-                                  // These also have getters so they can be accessed like arrays.
-                                  // The second [0] returns the SpeechRecognitionAlternative at position 0.
-                                  // We then return the transcript property of the SpeechRecognitionAlternative object
-                                  var word = event.results[0][0].transcript;
-                                  diagnosticshort.textContent = '"' + word + '" (' + Math.round(event.results[0][0].confidence*100) + "%)";
-                                  
-                                  if (word == 'contact') { var destination = document.getElementById("positioncontact"); destination.scrollIntoView(); }
-                                  if (word == 'about') { var destination = document.getElementById("positionabout"); destination.scrollIntoView(); }
-                                  if (word == 'innovations' || word == 'innovation') { var destination = document.getElementById("positioninnovations"); destination.scrollIntoView(); }
-                                  if (word == 'manifesto') { var destination = document.getElementById("positionmanifesto"); destination.scrollIntoView(); }
-                                  
-                                }
-                                recognition.onspeechend = function() {
-                                  recognition.stop();
-                                  diagnosticshort.textContent = 'Press "M"/click here to speak.';
-                                  var micicon = document.getElementById("mic");
-                                  micicon.classList.toggle("blink");
-                                }
-                                recognition.onnomatch = function(event) {
-                                  diagnosticshort.textContent = "Didn't recognise.";
-                                }
-                                recognition.onerror = function(event) {
-                                  diagnosticshort.textContent = 'Err: ' + event.error;
-                                  var micicon = document.getElementById("mic");
-                                  micicon.classList.toggle("blink");
-                                }
-                                
-                                document.body.onkeyup = function(e)
-                                {
-                                  // When press key "m"
-                                  if(e.keyCode == 77 )
-                                  {
-                                    recognition.start();
-                                    console.log('Ready to receive a voice command.');
-                                    diagnosticshort.textContent = 'Listening...';
-                                    var micicon = document.getElementById("mic");
-                                    micicon.classList.add("blink");
-                                    console.log("recognition var pushed: " + recognition, recognition);
-                                  }
-                                }
-                                
-                              </script>
-                              
-                              {% if debug %}
-                              <script src="{{ dist }}/js/debug_tool.js"></script>
-                              {% endif %}
-                              {% endblock %}
-                              
-                              {#
-                                |
-                                | WP Footer
-                                |--------------
-                                #}
-                                {{ wp_footer }}
-                                
-                              </body>
-                              </html>
+                {% endblock %}
+
+                {#
+                |
+                | Cookie
+                |---------
+                #}
+                {% include '_includes/cookie.twig' %}
+            </div>
+        </div>
+
+        {#
+        |
+        | Debug Tool
+        |------------
+        #}
+        {% if debug %}
+            {% include '_debug-tool/debug-tool.twig' %}
+        {% endif %}
+
+
+        {#
+        |
+        | Javascripts
+        |--------------
+        #}
+        {% block javascripts %}
+            <script src="{{ dist }}/js/app.js"></script>
+            
+            {% if debug %}
+                <script src="{{ dist }}/js/debug_tool.js"></script>
+            {% endif %}
+        {% endblock %}
+	    
+        {#
+        |
+        | WP Footer
+        |--------------
+        #}
+        {{ wp_footer }}
+    </body>
+</html>

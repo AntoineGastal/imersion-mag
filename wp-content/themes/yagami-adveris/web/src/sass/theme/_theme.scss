@@ -7,7 +7,6 @@
 @import 'layout/header';
 @import 'layout/footer';
 @import 'layout/content';
-@import 'layout/detection';
 
 //Pages
 @import 'pages/home';
@@ -17,7 +16,7 @@
 
 //Components
 @import 'components/buttons';
-@import 'components/smooth-scrollbar';
+@import 'components/locomotive-scroll';
 @import 'components/forms';
 @import 'components/loader';
 @import 'components/kira';

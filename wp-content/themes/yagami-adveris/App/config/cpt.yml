@@ -7,34 +7,34 @@
 #
 #
 
-#--------------------- Projects ----------------------
-projects:
+#--------------------- Immersions ----------------------
+immersions:
   registration:
     labels:
-      name: Projects
-      singular_name: Project
-      add_new: Ajouter un project
-      add_new_item: Ajouter project
-      edit_item: Modifier project
+      name: Immersions
+      singular_name: Immersion
+      add_new: Ajouter une immersion
+      add_new_item: Ajouter immersion
+      edit_item: Modifier immersion
       new_item: Nouveau
-      all_items: Tous les projects
-      view_item: Voir l'élément
-      search_item: Rechercher un project
-      not_found: Aucun project
-      not_fonud_in_trash: Aucun project trouvé dans la corbeille
-      menu_name: Projects
+      all_items: Toutes les immersions
+      view_item: Voir l'immersion
+      search_item: Rechercher une immersion
+      not_found: Aucune immersion
+      not_fonud_in_trash: Aucune immersion trouvé dans la corbeille
+      menu_name: Immersions
     public: true
     publicly_queryable: true
     show_ui: true
     show_in_menu: true
-    query_var: projects
+    query_var: immersions
     rewrite:
-      slug: projects
+      slug: immersion
     capability_type: post
     has_archive: true
     hierarchical: false
     menu_position: 5
-    menu_icon: dashicons-admin-site
+    menu_icon: dashicons-airplane
     exclude_from_search: false
     supports: 
       - title

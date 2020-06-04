@@ -5,9 +5,45 @@
 | Header
 |---------
 #}
-<header id="header" class="c-white" data-kira-timeline-onload="data-kira-timeline-onload">
-   
-     <div class="header-container" class="pt-xs pb-xs pl-md pr-md row">
+<header id="header" data-kira-timeline-onload>
+    <div class="header-container" data-kira-item="fadeInUp.stagger.sm">
+        <div data-stagger-item>
+            <a href="{{ function('home_url') }}" class="item-logo">
+                {{ function([services, 'svg'], img ~ '/icon/logo.svg') }}
+            </a>
+        </div>
+        <nav class="item-nav">
+            <ul class="item-menu">
+                {% for item in menuPrimary %}
+                    <li class="{{ item.classes | join(' ') }}" data-stagger-item>
+                        <a class="item-link" href="{{item.link}}">{{item.title}}</a>
+                        
+                        {% if item.get_children %}
+                            <ul class="nav-drop">
+                                {% for child in item.get_children %}
+                                <li><a href="{{child.link}}">{{child.title}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <div class="lang-container" data-stagger-item>
+                {% for language in languages %}
+                    {% if language.active == 1 %}
+                        <span class="active lang-item">{{ language.code }}</span> 
+                    {% else %}
+                        <ul data-stagger-item>
+                            <li>
+                                <a class="item-lang" href="{{ language.url }}">{{ language.code }}</a>
+                            </li>
+                        </ul>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </nav>
+        
         <button class="btn-menu">
             <span class="item-burger">
                 <span></span>
@@ -17,25 +53,6 @@
         </button>
     </div>
 </header>
-
-{#
-|
-| Panel display - Start
-|---------
-#}
-<div class="row">
-    <div id="detection-panel" class="c-white pl-md col-md-6 col-xs-12">
-        <div class="row">
-            <div id="voice-status" class="mr-xs p-xs"><i id="mic" class="fal fa-microphone"></i> <span class="outputshort">Press "M"/click here to speak. </span><span class="output" style="display:none;">Press "M"/click here to speak and go to the section.</span><span id="menu" style="display:none;"> Tell us what you want to see:  <a href="#positionmanifesto" class="link-very-light-grey">MANIFESTO</a> | <a href="#positionabout" class="link-very-light-grey">ABOUT</a> | <a href="#positioncontact" class="link-very-light-grey">CONTACT</a> | <a href="#positioninnovations" class="link-very-light-grey">INNOVATIONS</a></span></div>
-            <div id="btn-head" class="mr-xs p-xs"><i class="fal fa-eye mr-xs"></i> <span id="btn-head-start" style="display:;"><i class="fal fa-toggle-off"></i></span> <span id="btn-head-stop"><i class="fal fa-toggle-on"></i></span></div>
-        </div>    
-    </div>
-</div>
-{# 
-|
-| Panel display - End
-|--------------
-#}
 
 {#
 |
