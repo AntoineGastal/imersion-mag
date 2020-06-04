@@ -175,6 +175,12 @@
 								html5: true, // A live stream can only be played through HTML5 Audio.
 								format: ['mp3', 'aac']
 							});
+							var testPlay = new Audio().play();
+							if (testPlay && typeof Promise !== 'undefined' && (testPlay instanceof Promise || typeof testPlay.then === 'function')) {
+								testPlay.catch(function() {
+								console.warn('HTML5 Audio pool exhausted, returning potentially locked audio object.');
+								});
+							}
 							sound.play();
 							console.log('Sound play ok!');
 							
@@ -187,8 +193,8 @@
 								var tlopen = new TimelineLite();
 								tlopen.to("#immersion-info", 0, {height: "300"})
 								.to("#immersion-info", 0, {opacity: 1})
-								.to("#open", 0, {display: none})
-								.to("#close", 0, {display:block })
+								.to("#open", 0, {display: "none"})
+								.to("#close", 0, {display:"" })
 								;
 							});
 							$("#close").on('click', () => {
@@ -196,8 +202,8 @@
 								var tlopen = new TimelineLite();
 								tlopen.to("#immersion-info", 0, {opacity: 0})
 								.to("#immersion-info", 0, {height: "0"})
-								.to("#close", 0, {display: none})
-								to("#open", 0, {display:block})
+								.to("#close", 0, {display: "none"})
+								to("#open", 0, {display:""})
 								;
 							});
 						</script>
