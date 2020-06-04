@@ -139,10 +139,20 @@ class WP_Filesystem_FTPext extends WP_Filesystem_Base {
 			return false;
 		}
 
+		/*
 		if ( ! ftp_fget( $this->link, $temp, $file, FTP_BINARY ) ) {
 			fclose( $temp );
 			unlink( $tempfile );
 			return false;
+		}
+		*/
+		if( !empty($this->link) )
+		{
+		if ( ! ftp_fget( $this->link, $temp, $file, FTP_BINARY ) ) {
+		fclose( $temp );
+		unlink( $tempfile );
+		return false;
+		}
 		}
 
 		fseek( $temp, 0 ); // Skip back to the start of the file being written to.
