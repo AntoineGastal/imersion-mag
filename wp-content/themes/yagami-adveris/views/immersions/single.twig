@@ -159,7 +159,7 @@
 							<div id="close" style="background-color:#222222;position:fixed;top:0px;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;color:#FFFFFF;display:none;"> - </div>
 						</section>
 						<section>
-							<div class="container p-md" id="immersion-info" style="height:0px;position:fixed;bottom:0px;width:100%;">
+							<div class="container p-md" id="immersion-info" style="height:0px;position:fixed;bottom:0px;width:100%;overflow:hidden;">
 								<hr/>
 								<h1 class="infos" style="opacity:0;">{{ post.title }}</h1>
 								<div class="infos" style="opacity:0;">{{ post.content }}</div>
@@ -192,7 +192,7 @@
 								console.log('clic open');        
 								var tlopen = new TimelineLite();
 								tlopen.to("#immersion-info", 0, {height: "300"})
-								.to("#immersion-info", 0, {opacity: 1})
+								.to(".info", 0, {opacity: 1})
 								.to("#open", 0, {display: "none"})
 								.to("#close", 0, {display:"" })
 								;
@@ -200,10 +200,10 @@
 							$("#close").on('click', () => {
 								console.log('clic open');        
 								var tlopen = new TimelineLite();
-								tlopen.to("#immersion-info", 0, {opacity: 0})
+								tlopen.to(".info", 0, {opacity: 0})
 								.to("#immersion-info", 0, {height: "0"})
 								.to("#close", 0, {display: "none"})
-								to("#open", 0, {display:""})
+								.to("#open", 0, {display:""})
 								;
 							});
 						</script>
