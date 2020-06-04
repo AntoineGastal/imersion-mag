@@ -148,14 +148,15 @@
 							
 							
 							// Start tracking
-							handsfree.start()
+							//handsfree.start()
 						</script>
 						
 						
 						{% block content %}
 						<section class="" style"text-align:center;">
 							<div style="background-image: url('{{ post.thumbnail.src }}');background-size: cover;background-position: center; width:3000px; height:1000px; margin:0 auto;border: solid 5px yellow;"></div>
-							<div id="open" style="background-color:#222222;position:fixed;top:0px;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;"> + </div>
+							<div id="open" style="background-color:#222222;position:fixed;top:0px;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;color:#FFFFFF;"> + </div>
+							<div id="close" style="background-color:#222222;position:fixed;top:0px;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;color:#FFFFFF;"> - </div>
 						</section>
 						<section>
 							<div class="container p-md" id="immersion-info" style="height:0px;position:fixed;bottom:0px;width:100%;">
@@ -187,7 +188,7 @@
 								tlopen.to("#immersion-info", 0, {height: "300"})
 								.to("#immersion-info", 0, {opacity: 1})
 								.to("#open", 0, {display: none})
-								.to("#close", 0, {display: })
+								.to("#close", 0, {display:block })
 								;
 							});
 							$("#close").on('click', () => {
@@ -196,7 +197,7 @@
 								tlopen.to("#immersion-info", 0, {opacity: 0})
 								.to("#immersion-info", 0, {height: "0"})
 								.to("#close", 0, {display: none})
-								to("#open", 0, {display:})
+								to("#open", 0, {display:block})
 								;
 							});
 						</script>
