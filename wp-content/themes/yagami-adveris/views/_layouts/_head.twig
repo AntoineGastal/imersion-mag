@@ -1,0 +1,60 @@
+{#
+|
+| Metas
+|---------
+#}
+{% block metas %}
+    <meta charset="{{ site.charset }}">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock %}
+
+{#
+|
+| Title
+|---------
+#}
+{% block title %}
+    {% if clear_head_for_yoast %}
+        <title>{{ wp_title }}</title>
+    {% else %}
+        <title>{{ wp_title ? wp_title : site.name }}</title>
+    {% endif %}
+{% endblock %}
+
+{#
+|
+| Meta Description
+|-------------------
+#}
+{% block meta_description %} 
+    {% if not clear_head_for_yoast %}
+        <meta name="description" content="{{ site.description }}"> 
+    {% endif %}
+{% endblock %}
+
+{#
+|
+| wp_head
+|----------
+#}
+{{ wp_head }}
+
+{#
+|
+| Stylesheets
+|--------------
+#}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ dist }}/css/app.css">
+    {% if debug %}
+        <link rel="stylesheet" href="{{ dist }}/css/debug_tool.css">
+    {% endif %}
+{% endblock %}
+
+{#
+|
+| Script GTM
+|-------------
+#}
+{{ options.scripts_analytics }}

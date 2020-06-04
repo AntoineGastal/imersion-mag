@@ -1,0 +1,104 @@
+/*
+|
+| Page Loader
+|--------------
+*/
+/*
+|
+| Transition Layer
+|------------------
+*/
+.layer-transition {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $light-grey;
+    transform: scaleY(0);
+}
+
+/*
+|
+| Loader
+|---------
+*/
+.page-loader {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $light-grey;
+    transform-origin: left top;
+
+    .item-content{
+        width: 100%;
+        color: $very-dark-grey;
+        text-align: center;
+    }
+
+    .item-logo {
+        width: 180px;
+        margin: auto;
+        opacity: 0;
+
+        @extend .svg-parent;
+
+        svg{
+            g{
+                //fill: $white;
+            }
+        }
+    }
+
+    .loader-circle {
+        position: relative;
+        width: 70px;
+        height: 70px;
+        margin: auto;
+
+        svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+
+            circle {
+                stroke: transparent;
+                stroke-width: 1;
+                cx: 35px;
+                cy: 35px;
+                r: 33px;
+                fill: transparent;
+
+                &.ready {
+                    stroke: $very-dark-grey;
+                }
+            }
+        }
+
+        .item-percentage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            font-size: 12px;
+        }
+    }
+}
+
+.barba-sync-loaded {
+    .page-loader {
+        display: none;
+    }
+}
+
+@keyframes loadbar{
+  from {transform: scaleX(0)}
+  to {transform: scaleX(0.7)}
+}

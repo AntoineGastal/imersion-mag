@@ -1,0 +1,20 @@
+{% import '_macros/global.twig' as global %}
+
+{% for key, value in posts %}
+    <div class="col-lg-4 col-md-6">
+        {{ global.card({
+            'image'  : value.thumbnail.src,
+            'terms'  : value.get_terms('category'),
+            'title'  : value.title,
+            'date'   : value.date|date('d.m.Y')|capitalize,
+            'content': value.content|truncate(20, true),
+            'link'   : value.link
+        }) }}
+    </div>
+{% endfor %}
+
+{% if limit|length < 1 %}
+<div>
+    <div class="no-more-post"></div>
+</div>
+{% endif %}

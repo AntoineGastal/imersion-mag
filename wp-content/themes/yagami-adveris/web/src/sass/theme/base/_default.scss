@@ -1,0 +1,83 @@
+/*
+|--------------------------
+|      DEFAULT & RESET
+|--------------------------
+*/
+html {
+    box-sizing: border-box;
+    -ms-overflow-style: scrollbar;
+
+    cursor: wait;
+
+    &.loaded {
+        cursor: inherit;
+    }
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body{
+    font-family: $font-family-default;
+    color: $default-color;
+    font-size: $default-font-size;
+    line-height: $default-line-height;
+    font-weight: $default-font-weight;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6{
+    @each $property, $value in $default-titles{
+        #{$property}: $value;
+    }
+}
+
+button, input, textarea{
+  &:focus{
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+button{
+    -webkit-appearance: none;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+
+img{
+  max-width: inherit;
+}
+
+a, img, span, button{
+    display: inline-block;
+}
+
+a{
+    color:$default-link-color;
+    text-decoration: none;
+
+    &:hover{
+        color: $default-link-color;
+    }
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+    
+    li{
+        list-style-type: none;
+    }
+}
