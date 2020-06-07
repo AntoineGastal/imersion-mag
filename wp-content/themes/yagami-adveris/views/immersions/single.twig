@@ -31,6 +31,25 @@
 			#}
 			<body class="{{ body_class }}" data-barba="wrapper" >
 				<div class="layer-transition"></div>
+				<div class="circle-transition">
+					<svg viewBox="0 0 100 100" xmlns="https://www.w3.org/2000/svg" version="1.1">
+						<defs>
+							<clipPath id="my-clip">
+								<title>My Clip Path</title>
+								<desc>an svg rectangle using a circle as the clipping target and animated with SMIL</desc>
+								<rect x="0" y="0" width="200" height="600">
+								<animate attributeType="XML"
+										 attributeName="x"
+										 from=“-200"
+										 to=“400"
+										 dur="5s"
+										 repeatCount="indefinite"/>
+								</rect>
+							</clipPath>
+						</defs>
+						<circle clip-path="url(#my-clip)" width="200" height="200" cx="50" r="50" cy="50" fill="green" />
+					</svg>
+				</div>
 				<div data-barba="container" data-barba-namespace="immersions" >
 					<div style="overflow:scroll !important; overflow-y: scroll;" locomotive-scroll-container>
 						
@@ -153,18 +172,20 @@
 						
 						
 						{% block content %}
-						<section class="" style"text-align:center;">
+						<section class="" style"text-align:center;" data-kira-timeline-onload>
 							<div style="background-image: url('{{ post.thumbnail.src }}');background-size: cover;background-position: center; width:3000px; height:1000px; margin:0 auto;border: solid 5px yellow;"></div>
-							<div id="open" style="background-color:#222222;position:fixed;top:0px;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;color:#FFFFFF;"> + </div>
-							<div id="close" style="background-color:#222222;position:fixed;top:0px;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;color:#FFFFFF;display:none;"> - </div>
+							<div id="open" style="background-color:#222222;position:fixed;top:0px;right:0;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;color:#FFFFFF;"> + </div>
+							<div id="close" style="background-color:#222222;position:fixed;top:0px;right:0;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;color:#FFFFFF;display:none;"> - </div>
+							<div id="back" style="background-color:#222222;position:fixed;top:0px;left:0;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;color:#FFFFFF;"><a href="https://www.imersion.io"> <- </a></div>
+							<h1 data-kira-item="typed">{{ post.title }}</h1>
 						</section>
 						<section>
 							<div class="container p-md" id="immersion-info" style="height:0px;position:fixed;bottom:0px;width:100%;overflow:hidden;">
-								<hr/>
-								<h1 class="infos" style="opacity:0;">{{ post.title }}</h1>
+								<hr class="infos" style="opacity:0;"/>
+								<h2 class="infos" style="opacity:0;">{{ post.title }}</h2>
 								<div class="infos" style="opacity:0;">{{ post.content }}</div>
 								<p class="infos" style="opacity:0;">{{ post.date }}</p>
-								<hr/>
+								<hr class="infos" style="opacity:0;"/>
 							</div>
 						</section>
 						{% endblock %}
@@ -192,7 +213,7 @@
 								console.log('clic open');        
 								var tlopen = new TimelineLite();
 								tlopen.to("#immersion-info", 0, {height: "300"})
-								.to(".info", 0, {opacity: 1})
+								.to(".infos", 0, {opacity: 1})
 								.to("#open", 0, {display: "none"})
 								.to("#close", 0, {display:"" })
 								;
@@ -200,7 +221,7 @@
 							$("#close").on('click', () => {
 								console.log('clic open');        
 								var tlopen = new TimelineLite();
-								tlopen.to(".info", 0, {opacity: 0})
+								tlopen.to(".infos", 0, {opacity: 0})
 								.to("#immersion-info", 0, {height: "0"})
 								.to("#close", 0, {display: "none"})
 								.to("#open", 0, {display:""})
