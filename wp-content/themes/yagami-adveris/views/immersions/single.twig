@@ -171,7 +171,7 @@
 							
 							
 							// Start tracking
-							//handsfree.start()
+							handsfree.start()
 						</script>
 						
 						
@@ -181,13 +181,13 @@
 							<div id="open" style="background-color:#222222;position:fixed;top:0px;right:0;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;color:#FFFFFF;"> + </div>
 							<div id="close" style="background-color:#222222;position:fixed;top:0px;right:0;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;color:#FFFFFF;display:none;"> - </div>
 							<div id="back" style="background-color:#222222;position:fixed;top:0px;left:0;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;color:#FFFFFF;"><a href="https://www.imersion.io"> <- </a></div>
-							<h1 data-kira-item="typed" style="position:fixed:bottom:40px; left:40px;">{{ post.title }} - <span id="play" style="cursor:pointer;">Play music</span></h1>
+							<h1 data-kira-item="typed" style="position:fixed;bottom:40px; left:40px;z-index:100;">{{ post.title }} - <span id="play" style="cursor:pointer;">Play music</span></h1>
 						</section>
 						<section>
 							<div class="container p-md" id="immersion-info" style="height:0px;position:fixed;bottom:0px;width:100%;overflow:hidden; background-color:#FFFFFF;">
 								<hr class="infos" style="opacity:0;"/>
-								<h2 class="infos" style="opacity:0;">{{ post.title }}</h2>
-								<div class="infos" style="opacity:0;">{{ post.content }}</div>
+								<h2 data-scroll data-scroll-speed="3" data-scroll-direction="horizontal" class="infos" style="opacity:0;">{{ post.title }}</h2>
+								<div data-scroll data-scroll-speed="1" data-scroll-direction="horizontal" class="infos" style="opacity:0;">{{ post.content }}</div>
 								<p class="infos" style="opacity:0;">{{ post.date }}</p>
 								<hr class="infos" style="opacity:0;"/>
 							</div>
@@ -206,7 +206,8 @@
 								console.warn('HTML5 Audio pool exhausted, returning potentially locked audio object.');
 								});
 							}
-							$("#play").on('click', () => {
+							$( document ).ready(function() {
+							//$("#play").on('click', () => {
 							sound.play();
 							console.log('Sound play ok!');
 							});
@@ -218,7 +219,9 @@
 							$("#open").on('click', () => {
 								console.log('clic open');        
 								var tlopen = new TimelineLite();
-								tlopen.to("#immersion-info", 0, {height: "300"})
+								tlopen
+								.to("#immersion-info", 0, {display: ""})
+								.to("#immersion-info", 0, {height: "300", ease: Power4.easeInOuteaseInOut})
 								.to(".infos", 0, {opacity: 1})
 								.to("#open", 0, {display: "none"})
 								.to("#close", 0, {display:"" })
@@ -228,7 +231,8 @@
 								console.log('clic open');        
 								var tlopen = new TimelineLite();
 								tlopen.to(".infos", 0, {opacity: 0})
-								.to("#immersion-info", 0, {height: "0"})
+								.to("#immersion-info", 0, {height: "0", padding:"0", ease: Power4.easeInOuteaseInOut })
+								.to("#immersion-info", 0, {display: "none"})
 								.to("#close", 0, {display: "none"})
 								.to("#open", 0, {display:""})
 								;
