@@ -208,18 +208,9 @@
 							}
 							//$( document ).ready(function() {
 							$("#play").on('click', () => {
-							sound.play();
+							sound.play() );
 							console.log('Sound play ok!');
 							});
-
-							$('#play').toggle(
-							function () {
-							sound.play();
-							},
-							function () {
-							sound.pause();
-							}
-							);
 							
 							document.body.style.overflow = "scroll";
 							console.log('style body ok');
