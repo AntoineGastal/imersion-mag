@@ -222,7 +222,7 @@
 								tlopen
 								.to("#title", 0, {display: "none"})
 								.to("#immersion-info", 0, {display: ""})
-								.to("#immersion-info", 2, {height: "300", ease: Power4.easeInOuteaseInOut})
+								.to("#immersion-info", 1, {height: "300", ease: Power4.easeInOuteaseInOut})
 								.to(".infos", 0.5, {opacity: 1})
 								.to("#open", 0, {display: "none"})
 								.to("#close", 0, {display:"" })
@@ -232,11 +232,11 @@
 								console.log('clic open');        
 								var tlopen = new TimelineLite();
 								tlopen
-								.to("#title", 0, {display: ""})
 								.to(".infos", 0.5, {opacity: 0})
-								.to("#immersion-info", 2, {height: "0", padding:"0", ease: Power4.easeInOuteaseInOut })
+								.to("#immersion-info", 1, {height: "0", padding:"0", ease: Power4.easeInOuteaseInOut })
 								.to("#immersion-info", 0, {display: "none"})
 								.to("#close", 0, {display: "none"})
+								.to("#title", 0, {display: ""})
 								.to("#open", 0, {display:""})
 								;
 							});
