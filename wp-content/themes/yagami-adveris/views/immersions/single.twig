@@ -162,6 +162,11 @@
 							
 							const handsfree = new Handsfree(config)
 							
+							Handsfree.use('horizontalScroll', (pointer, handsfree) => {
+								if (pointer.y < 400) window.scrollTo(0, window.scrollY + pointer.y)
+								if (pointer.y > window.innerHeight)
+								  window.scrollTo(0, window.scrollY + (pointer.y - window.innerHeight))
+							  })
 							
 							
 							
@@ -176,10 +181,10 @@
 							<div id="open" style="background-color:#222222;position:fixed;top:0px;right:0;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;color:#FFFFFF;"> + </div>
 							<div id="close" style="background-color:#222222;position:fixed;top:0px;right:0;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;color:#FFFFFF;display:none;"> - </div>
 							<div id="back" style="background-color:#222222;position:fixed;top:0px;left:0;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;color:#FFFFFF;"><a href="https://www.imersion.io"> <- </a></div>
-							<h1 data-kira-item="typed">{{ post.title }}</h1>
+							<h1 data-kira-item="typed" style="position:fixed:bottom:40px; left:40px;">{{ post.title }} - <span id="play" style="cursor:pointer;">Play music</span></h1>
 						</section>
 						<section>
-							<div class="container p-md" id="immersion-info" style="height:0px;position:fixed;bottom:0px;width:100%;overflow:hidden;">
+							<div class="container p-md" id="immersion-info" style="height:0px;position:fixed;bottom:0px;width:100%;overflow:hidden; background-color:#FFFFFF;">
 								<hr class="infos" style="opacity:0;"/>
 								<h2 class="infos" style="opacity:0;">{{ post.title }}</h2>
 								<div class="infos" style="opacity:0;">{{ post.content }}</div>
@@ -201,8 +206,10 @@
 								console.warn('HTML5 Audio pool exhausted, returning potentially locked audio object.');
 								});
 							}
+							$("#play").on('click', () => {
 							sound.play();
 							console.log('Sound play ok!');
+							});
 							
 							document.body.style.overflow = "scroll";
 							console.log('style body ok');
