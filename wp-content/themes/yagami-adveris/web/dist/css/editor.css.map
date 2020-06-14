@@ -1,1 +1,0 @@
-{"version":3,"file":"../css/editor.css","sources":["webpack:///./src/editor/src/editor/editor.scss"],"sourcesContent":["$black: #000;\n.c-black {\n    color: $black;\n}\n.span-block{\n    display: block;\n}"],"mappings":"AACA;AACA;AACA;AACA;AACA;;","sourceRoot":""}

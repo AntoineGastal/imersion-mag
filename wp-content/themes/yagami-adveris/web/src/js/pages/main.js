@@ -59,7 +59,6 @@ export default {
         });
         
         document.body.style.overflow = "scroll";
-        console.log('style body ok');
         
 
         /*

@@ -15,6 +15,7 @@ import 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js';
 import ScrollMagic from 'scrollmagic';
 import LocomotiveScroll from 'locomotive-scroll';
 import barba from '@barba/core';
+import {Howl, Howler} from 'howler';
 
 /*
 |
@@ -65,7 +66,7 @@ const barbaRouter = new BarbaRouter({
             'dependencies': [app, Loader, Menu, Kira, ScrollMagic, CustomEase, DrawSVGPlugin, TweenMax]
         }, {
             'file': main,
-            'dependencies': [app, CookieManager]
+            'dependencies': [app, CookieManager, TweenMax, Howl, Howler]
         },
     ],
 
