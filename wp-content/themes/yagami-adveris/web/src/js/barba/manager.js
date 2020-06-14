@@ -44,7 +44,7 @@ export default {
 
                     const $layer = $('.layer-transition');
                     const timeline = new TimelineMax({
-                        paused: true,
+                        paused: true, 
                         onComplete: () => {
                             document.body.style.overflow = 'inherit';
                                 app.initLocomotiveScroll(LocomotiveScroll);
