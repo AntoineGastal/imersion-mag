@@ -1,5 +1,5 @@
 export default {
-    init: (app, TweenMax, Howl, Howler) => {
+    init: (app, Howl) => {
 
 		/*
 		|

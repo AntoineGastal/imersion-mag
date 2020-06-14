@@ -27,8 +27,9 @@ export default {
                         const timeline  = new TimelineMax({ paused: true, onComplete: () => resolve() });
 
                         timeline
-                            .to($container, 1, { y: -100, ease: Expo.easeIn }, 'start')
-                            .to($layer, 1, { scaleY: 1, transformOrigin: 'left bottom', ease: Expo.easeInOut }, 'start+=0.4');
+                            //.to($container, 1, { y: -100, ease: Expo.easeIn }, 'start')
+                            //.to($layer, 1, { scaleY: 1, transformOrigin: 'left bottom', ease: Expo.easeInOut }, 'start+=0.4');
+                            .to($layer, 1, { opacity: 1, ease: Expo.easeInOut }, 'start+=0.4');
 
                         timeline.play()
                     });

@@ -14,8 +14,8 @@ import 'scrollmagic/scrollmagic/uncompressed/plugins/jquery.ScrollMagic.js';
 import 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js';
 import ScrollMagic from 'scrollmagic';
 import LocomotiveScroll from 'locomotive-scroll';
-import barba from '@barba/core';
 import {Howl, Howler} from 'howler';
+import barba from '@barba/core';
 
 /*
 |
@@ -66,7 +66,7 @@ const barbaRouter = new BarbaRouter({
             'dependencies': [app, Loader, Menu, Kira, ScrollMagic, CustomEase, DrawSVGPlugin, TweenMax]
         }, {
             'file': main,
-            'dependencies': [app, CookieManager, TweenMax, Howl, Howler]
+            'dependencies': [app, CookieManager]
         },
     ],
 
@@ -85,7 +85,7 @@ const barbaRouter = new BarbaRouter({
         {
             'namespace': 'immersions_single',
             'file': immersions,
-            'dependencies': [app, TweenMax, Howl, Howler],
+            'dependencies': [app, TweenMax, Howl],
         },
         {
             'namespace': 'news_archive',
