@@ -30,27 +30,7 @@
 			|-------
 			#}
 			<body class="{{ body_class }}" data-barba="wrapper" >
-				<div class="layer-transition">
-				<div class="circle-transition" style="position:fixed;z-index:999;text-align:center;">
-					<svg viewBox="0 0 100 100" xmlns="https://www.w3.org/2000/svg" version="1.1">
-						<defs>
-							<clipPath id="my-clip">
-								<title>My Clip Path</title>
-								<desc>an svg rectangle using a circle as the clipping target and animated with SMIL</desc>
-								<rect x="0" y="0" width="200" height="600">
-								<animate attributeType="XML"
-										 attributeName="x"
-										 from=“-200"
-										 to=“400"
-										 dur="5s"
-										 repeatCount="indefinite"/>
-								</rect>
-							</clipPath>
-						</defs>
-						<circle clip-path="url(#my-clip)" width="200" height="200" cx="50" r="50" cy="50" fill="green" />
-					</svg>
-				</div>
-				</div>
+				<div class="layer-transition"></div>
 				<div data-barba="container" data-barba-namespace="immersions" >
 					<div style="overflow:scroll !important; overflow-y: scroll;" locomotive-scroll-container>
 						<script>

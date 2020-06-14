@@ -44254,7 +44254,7 @@ var define = false;
             .to($layer, 1, {
               opacity: 1,
               ease: Expo.easeInOut
-            }, 'start+=0.4');
+            }, 'start');
             timeline.play();
           });
         },
@@ -44271,14 +44271,11 @@ var define = false;
               app.initLocomotiveScroll(LocomotiveScroll);
             }
           });
-          timeline.to($layer, 1, {
-            scaleY: 0,
-            transformOrigin: 'left top',
-            ease: Expo.easeInOut
-          }, 'start').from($(data.next.container), 1, {
-            y: 100,
+          timeline //.to($layer, 1, { scaleY: 0, transformOrigin: 'left top', ease: Expo.easeInOut }, 'start')
+          .from($layer, 1, {
+            ocacity: 1,
             ease: Expo.easeOut
-          }, 'start+=0.4');
+          }, 'start');
           timeline.play();
         },
         afterEnter: function afterEnter(data) {}
