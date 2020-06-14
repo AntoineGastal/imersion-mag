@@ -6,11 +6,13 @@ import {
  } from '@fortawesome/free-brands-svg-icons'; // prefix: fab
 //import { faFire as fasFaFire } from '@fortawesome/pro-solid-svg-icons'; // prefix: fas
 //import { faFire as farFaFire } from '@fortawesome/pro-regular-svg-icons'; // prefix: far
-import { faTimes as falTimes } from '@fortawesome/pro-light-svg-icons'; // prefix: fal
+import { faTimes as falTimes, faPlusCircle as falPlusCircle,faMinusCircle as falMinusCircle } from '@fortawesome/pro-light-svg-icons'; // prefix: fal
 
 library.add(
     faWordpress,
     falTimes,
+    falPlusCircle,
+    falMinusCircle,
     faFacebookF,
     faTwitter
 )
