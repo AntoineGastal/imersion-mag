@@ -29,7 +29,7 @@ export default {
                         timeline
                             //.to($container, 1, { y: -100, ease: Expo.easeIn }, 'start')
                             //.to($layer, 1, { scaleY: 1, transformOrigin: 'left bottom', ease: Expo.easeInOut }, 'start+=0.4');
-                            .to($layer, 0.1, { height: '0px',  ease: Expo.easeInOut }, 'start')
+                            .to($layer, 0.1, { height: "100%",  ease: Expo.easeInOut }, 'start')
                             .to($layer, 2, {opacity: 1, ease: Expo.easeInOut })
                             ;
 
@@ -53,8 +53,8 @@ export default {
 
                     timeline
                         //.to($layer, 1, { scaleY: 0, transformOrigin: 'left top', ease: Expo.easeInOut }, 'start')
-                        .from($layer, 2, { opacity: 1, ease: Expo.easeOut }, 'start')
-                        .to($layer, 0.1, { height: '0px', ease: Expo.easeInOut })
+                        .from($layer, 2, { opacity: 1, height: "100%", ease: Expo.easeOut }, 'start')
+                        .to($layer, 0.1, { height: "0%", ease: Expo.easeInOut })
                         ;
 
                 timeline.play();
