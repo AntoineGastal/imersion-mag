@@ -1,6 +1,18 @@
 export default {
     init: (app, TweenMax, Howl, Howler) => {
 
+		/*
+		|
+		| Constants
+		|-----------
+		*/
+        const 
+            $play = $('#play'),
+            $open = $('#open'),
+            $close = $('#close')
+        ;
+        console.log('immersion.js vue');  
+
              /*
 		|
 		| Player Audio
@@ -19,7 +31,7 @@ export default {
         }
         
         //$( document ).ready(function() {
-        $("#play").on('click', () => {
+        $play.on('click', () => {
         sound.play();
         console.log('Sound play ok!');
         });
@@ -34,7 +46,7 @@ export default {
         */
         
         // Open button 
-        $("#open").on('click', () => {
+        $open.on('click', () => {
             console.log('clic open');        
             var tlopen = new TimelineLite();
             tlopen
@@ -47,7 +59,7 @@ export default {
             ;
         });
         // Close button 
-        $("#close").on('click', () => {
+        $close.on('click', () => {
             console.log('clic open');        
             var tlopen = new TimelineLite();
             tlopen
