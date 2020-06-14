@@ -85,7 +85,7 @@ const barbaRouter = new BarbaRouter({
         {
             'namespace': 'immersions_single',
             'file': immersions,
-            'dependencies': [app],
+            'dependencies': [app, TweenMax, Howl, Howler],
         },
         {
             'namespace': 'news_archive',

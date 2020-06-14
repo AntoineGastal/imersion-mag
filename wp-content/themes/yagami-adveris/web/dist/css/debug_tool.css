@@ -1,1 +1,588 @@
-#debug-tool{position:fixed;z-index:10000;bottom:0;right:0;overflow:hidden;background-color:#fff;font-size:12px;font-family:arial;font-style:normal;color:#222}#debug-tool.closed{width:100%;height:36px}#debug-tool.expanded{width:100%;height:100vh}#debug-tool.expanded .btn-retract{display:none!important}#debug-tool.expanded .btn-expand{background-color:#dc3545!important}#debug-tool.retracted{width:36px;height:36px}#debug-tool.retracted .btn-expand{display:none!important}#debug-tool.retracted .btn-retract{background-color:#5e976d!important}#debug-tool .toolbar{position:relative;background-color:#222;width:100%;height:36px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}#debug-tool .toolbar .btn-toolbar{height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;color:#fff;font-size:22px}#debug-tool .toolbar .shortcuts .btn-expand{background-color:#5e976d;width:36px}#debug-tool .toolbar .btn-retract{background-color:#dc3545;width:36px}#debug-tool .body .header{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:100%;height:80px;background-color:#5e976d;color:#fff}#debug-tool .body .content{position:relative;top:0;height:calc(100vh - 116px)}#debug-tool .body .content nav{position:absolute;top:0;left:0;width:200px;height:100%;background-color:#222}#debug-tool .body .content nav ul li a{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:100%;padding:10px 0;color:#aeaeae;font-size:16px}#debug-tool .body .content nav ul li a.active,#debug-tool .body .content nav ul li a:hover{background-color:#3c3c3c}#debug-tool .body .content nav ul li a i{color:#aeaeae}#debug-tool .body .content nav ul li a svg{position:absolute;top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%);left:15px}#debug-tool .body .content nav ul li a span{padding-left:35px;font-size:14px;margin-left:10px}#debug-tool .body .content .core{position:absolute;top:0;left:200px;width:calc(100% - 200px);height:100%;overflow:auto;padding:15px}#debug-tool .body .content .core .toggle-content{display:none}#debug-tool .body .content .core .toggle-content.active{display:block}#debug-tool ul.debug-list{position:relative}#debug-tool ul.debug-list li{position:relative;padding:10px 0 10px 30px}#debug-tool ul.debug-list li:first-child:after{top:50%;height:50%}#debug-tool ul.debug-list li:last-child:after{height:50%}#debug-tool ul.debug-list li:after,#debug-tool ul.debug-list li:before{content:"";position:absolute;left:0}#debug-tool ul.debug-list li:after{top:0;width:1px;height:100%;background-color:#222}#debug-tool ul.debug-list li:before{top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%);width:20px;height:1px;background-color:#222}#debug-tool .debug-table{width:100%}#debug-tool .debug-table td,#debug-tool .debug-table th,#debug-tool .debug-table tr{border:1px solid #e5e5e5}#debug-tool .debug-table td,#debug-tool .debug-table th{padding:10px 15px}#debug-tool pre.sf-dump .sf-dump-default:focus,#debug-tool pre.sf-dump:focus{outline:none}#debug-tool .color-red{color:#dc3545}#debug-tool .bg-red{background-color:#dc3545}#debug-tool .color-green{color:#5e976d}#debug-tool .bg-green{background-color:#5e976d}#debug-tool .color-blue{color:#007bff}#debug-tool .bg-blue{background-color:#007bff}#debug-tool .color-almost-white{color:#f2f2f2}#debug-tool .bg-almost-white{background-color:#f2f2f2}#debug-tool .color-very-light-grey{color:#e5e5e5}#debug-tool .bg-very-light-grey{background-color:#e5e5e5}#debug-tool .color-light-grey{color:#aeaeae}#debug-tool .bg-light-grey{background-color:#aeaeae}#debug-tool .color-dark-grey{color:#222}#debug-tool .bg-dark-grey{background-color:#222}#debug-tool .font-xs{font-size:12px!important}#debug-tool .font-sm{font-size:14px!important}#debug-tool .font-md{font-size:16px!important}#debug-tool .font-lg{font-size:18px!important}#debug-tool .font-xl{font-size:20px!important}#debug-tool .bold{font-weight:600}#debug-tool .regular{font-weight:400}#debug-tool .tt-u{text-transform:uppercase!important}#debug-tool .tt-l{text-transform:lowercase!important}#debug-tool .tt-c{text-transform:capitalize!important}#debug-tool .td-u{text-decoration:underline!important}#debug-tool .td-n{text-decoration:none!important}#debug-tool .fs-i{font-style:italic!important}#debug-tool .fs-o{font-style:oblique!important}#debug-tool .fs-n{font-style:normal!important}#debug-tool .bg-cover{background-size:cover!important;background-position:50%!important;background-repeat:no-repeat!important}#debug-tool .o-v{overflow:visible!important}#debug-tool .ox-v{overflow-x:visible!important}#debug-tool .oy-v{overflow-y:visible!important}#debug-tool .o-h{overflow:hidden!important}#debug-tool .ox-h{overflow-x:hidden!important}#debug-tool .oy-h{overflow-y:hidden!important}#debug-tool .p-r{position:relative!important}#debug-tool .p-a{position:absolute!important}#debug-tool .ai-start{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}#debug-tool .ai-end{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}#debug-tool .ai-center{-webkit-box-align:center;-ms-flex-align:center;align-items:center}#debug-tool .ai-baseline{-webkit-box-align:baseline;-ms-flex-align:baseline;align-items:baseline}#debug-tool .ai-stretch{-webkit-box-align:stretch;-ms-flex-align:stretch;align-items:stretch}#debug-tool .d-i{display:inline}#debug-tool .d-ib{display:inline-block}#debug-tool .d-b{display:block}#debug-tool .d-f{display:-webkit-box;display:-ms-flexbox;display:flex}#debug-tool .jc-start{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}#debug-tool .jc-end{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end}#debug-tool .jc-center{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}#debug-tool .jc-between{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}#debug-tool .jc-around{-ms-flex-pack:distribute;justify-content:space-around}#debug-tool .m-0{margin:0!important}#debug-tool .mt-0{margin-top:0!important}#debug-tool .mb-0,#debug-tool .my-0{margin-bottom:0!important}#debug-tool .my-0{margin-top:0!important}#debug-tool .ml-0{margin-left:0!important}#debug-tool .mr-0,#debug-tool .mx-0{margin-right:0!important}#debug-tool .mx-0{margin-left:0!important}#debug-tool .p-0{padding:0!important}#debug-tool .pt-0{padding-top:0!important}#debug-tool .pb-0,#debug-tool .py-0{padding-bottom:0!important}#debug-tool .py-0{padding-top:0!important}#debug-tool .pl-0{padding-left:0!important}#debug-tool .pr-0,#debug-tool .px-0{padding-right:0!important}#debug-tool .px-0{padding-left:0!important}#debug-tool .m-xs{margin:5px!important}#debug-tool .mt-xs{margin-top:5px!important}#debug-tool .mb-xs,#debug-tool .my-xs{margin-bottom:5px!important}#debug-tool .my-xs{margin-top:5px!important}#debug-tool .ml-xs{margin-left:5px!important}#debug-tool .mr-xs,#debug-tool .mx-xs{margin-right:5px!important}#debug-tool .mx-xs{margin-left:5px!important}#debug-tool .p-xs{padding:5px!important}#debug-tool .pt-xs{padding-top:5px!important}#debug-tool .pb-xs,#debug-tool .py-xs{padding-bottom:5px!important}#debug-tool .py-xs{padding-top:5px!important}#debug-tool .pl-xs{padding-left:5px!important}#debug-tool .pr-xs,#debug-tool .px-xs{padding-right:5px!important}#debug-tool .px-xs{padding-left:5px!important}#debug-tool .m-sm{margin:15px!important}#debug-tool .mt-sm{margin-top:15px!important}#debug-tool .mb-sm,#debug-tool .my-sm{margin-bottom:15px!important}#debug-tool .my-sm{margin-top:15px!important}#debug-tool .ml-sm{margin-left:15px!important}#debug-tool .mr-sm,#debug-tool .mx-sm{margin-right:15px!important}#debug-tool .mx-sm{margin-left:15px!important}#debug-tool .p-sm{padding:15px!important}#debug-tool .pt-sm{padding-top:15px!important}#debug-tool .pb-sm,#debug-tool .py-sm{padding-bottom:15px!important}#debug-tool .py-sm{padding-top:15px!important}#debug-tool .pl-sm{padding-left:15px!important}#debug-tool .pr-sm,#debug-tool .px-sm{padding-right:15px!important}#debug-tool .px-sm{padding-left:15px!important}#debug-tool .m-md{margin:30px!important}#debug-tool .mt-md{margin-top:30px!important}#debug-tool .mb-md,#debug-tool .my-md{margin-bottom:30px!important}#debug-tool .my-md{margin-top:30px!important}#debug-tool .ml-md{margin-left:30px!important}#debug-tool .mr-md,#debug-tool .mx-md{margin-right:30px!important}#debug-tool .mx-md{margin-left:30px!important}#debug-tool .p-md{padding:30px!important}#debug-tool .pt-md{padding-top:30px!important}#debug-tool .pb-md,#debug-tool .py-md{padding-bottom:30px!important}#debug-tool .py-md{padding-top:30px!important}#debug-tool .pl-md{padding-left:30px!important}#debug-tool .pr-md,#debug-tool .px-md{padding-right:30px!important}#debug-tool .px-md{padding-left:30px!important}#debug-tool .m-lg{margin:50px!important}#debug-tool .mt-lg{margin-top:50px!important}#debug-tool .mb-lg,#debug-tool .my-lg{margin-bottom:50px!important}#debug-tool .my-lg{margin-top:50px!important}#debug-tool .ml-lg{margin-left:50px!important}#debug-tool .mr-lg,#debug-tool .mx-lg{margin-right:50px!important}#debug-tool .mx-lg{margin-left:50px!important}#debug-tool .p-lg{padding:50px!important}#debug-tool .pt-lg{padding-top:50px!important}#debug-tool .pb-lg,#debug-tool .py-lg{padding-bottom:50px!important}#debug-tool .py-lg{padding-top:50px!important}#debug-tool .pl-lg{padding-left:50px!important}#debug-tool .pr-lg,#debug-tool .px-lg{padding-right:50px!important}#debug-tool .px-lg{padding-left:50px!important}#debug-tool .m-xl{margin:70px!important}#debug-tool .mt-xl{margin-top:70px!important}#debug-tool .mb-xl,#debug-tool .my-xl{margin-bottom:70px!important}#debug-tool .my-xl{margin-top:70px!important}#debug-tool .ml-xl{margin-left:70px!important}#debug-tool .mr-xl,#debug-tool .mx-xl{margin-right:70px!important}#debug-tool .mx-xl{margin-left:70px!important}#debug-tool .p-xl{padding:70px!important}#debug-tool .pt-xl{padding-top:70px!important}#debug-tool .pb-xl,#debug-tool .py-xl{padding-bottom:70px!important}#debug-tool .py-xl{padding-top:70px!important}#debug-tool .pl-xl{padding-left:70px!important}#debug-tool .pr-xl,#debug-tool .px-xl{padding-right:70px!important}#debug-tool .px-xl{padding-left:70px!important}#debug-tool .m-xxl{margin:140px!important}#debug-tool .mt-xxl{margin-top:140px!important}#debug-tool .mb-xxl,#debug-tool .my-xxl{margin-bottom:140px!important}#debug-tool .my-xxl{margin-top:140px!important}#debug-tool .ml-xxl{margin-left:140px!important}#debug-tool .mr-xxl,#debug-tool .mx-xxl{margin-right:140px!important}#debug-tool .mx-xxl{margin-left:140px!important}#debug-tool .p-xxl{padding:140px!important}#debug-tool .pt-xxl{padding-top:140px!important}#debug-tool .pb-xxl,#debug-tool .py-xxl{padding-bottom:140px!important}#debug-tool .py-xxl{padding-top:140px!important}#debug-tool .pl-xxl{padding-left:140px!important}#debug-tool .pr-xxl,#debug-tool .px-xxl{padding-right:140px!important}#debug-tool .px-xxl{padding-left:140px!important}
+/*
+|--------------------
+| 	  DEBUG TOOL
+|--------------------
+*/
+/*
+|
+| Variables
+|------------
+*/
+/*
+|
+| Debug Tool
+|-------------
+*/
+#debug-tool {
+  position: fixed;
+  z-index: 10000;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  background-color: #fff;
+  font-size: 12px;
+  font-family: 'arial';
+  font-style: normal;
+  color: #222222;
+  /*
+	|
+	| States
+	|---------
+	*/
+  /*
+	|
+	| Toolbar
+	|----------
+	*/
+  /*
+	|
+	| Body
+	|-------
+	*/
+  /*
+	|
+	| Generate classes
+	|-------------------
+	|
+	*/
+  /*
+	|
+	| Text Transform
+	|----------------------------
+	|
+	*/
+  /*
+	|
+	| Underline
+	|------------
+	|
+	*/
+  /*
+	|
+	| Font styles
+	|--------------
+	|
+	*/
+  /*
+	|
+	| Background
+	|-------------
+	|
+	*/
+  /*
+	|
+	| Overflows
+	|-------------
+	|
+	*/
+  /*
+	|
+	| Positions
+	|-------------
+	|
+	*/
+  /*
+	|
+	| Flex Alignment
+	|-----------------
+	|
+	*/
+  /*
+	|
+	| Displays
+	|---------------
+	|
+	*/
+  /*
+	|
+	| Flex Justify
+	|---------------
+	|
+	*/
+  /*
+	|
+	| Margins & Paddings Maps
+	|--------------------------
+	|
+	*/
+  /*
+	|
+	| Margins & Paddings
+	|-----------------------
+	|
+	*/ }
+  #debug-tool.closed {
+    width: 100%;
+    height: 36px; }
+  #debug-tool.expanded {
+    width: 100%;
+    height: 100vh; }
+    #debug-tool.expanded .btn-retract {
+      display: none !important; }
+    #debug-tool.expanded .btn-expand {
+      background-color: #dc3545 !important; }
+  #debug-tool.retracted {
+    width: 36px;
+    height: 36px; }
+    #debug-tool.retracted .btn-expand {
+      display: none !important; }
+    #debug-tool.retracted .btn-retract {
+      background-color: #5e976d !important; }
+  #debug-tool .toolbar {
+    position: relative;
+    background-color: #222222;
+    width: 100%;
+    height: 36px;
+    display: flex;
+    justify-content: space-between; }
+    #debug-tool .toolbar .btn-toolbar {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 22px; }
+    #debug-tool .toolbar .shortcuts .btn-expand {
+      background-color: #5e976d;
+      width: 36px; }
+    #debug-tool .toolbar .btn-retract {
+      background-color: #dc3545;
+      width: 36px; }
+  #debug-tool .body {
+    /*
+		|
+		| Header
+		|---------
+		*/
+    /*
+		|
+		| Content
+		|---------
+		*/ }
+    #debug-tool .body .header {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 80px;
+      background-color: #5e976d;
+      color: #fff; }
+    #debug-tool .body .content {
+      position: relative;
+      top: 0;
+      height: calc(100vh - (36px + 80px));
+      /*
+			|
+			| Nav
+			|---------
+			*/
+      /*
+			|
+			| Core
+			|---------
+			*/ }
+      #debug-tool .body .content nav {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 100%;
+        background-color: #222222; }
+        #debug-tool .body .content nav ul li a {
+          position: relative;
+          display: flex;
+          align-items: center;
+          width: 100%;
+          padding: 10px 0;
+          color: #aeaeae;
+          font-size: 16px; }
+          #debug-tool .body .content nav ul li a.active, #debug-tool .body .content nav ul li a:hover {
+            background-color: #3c3c3c; }
+          #debug-tool .body .content nav ul li a i {
+            color: #aeaeae; }
+          #debug-tool .body .content nav ul li a svg {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 15px; }
+          #debug-tool .body .content nav ul li a span {
+            padding-left: 35px;
+            font-size: 14px;
+            margin-left: 10px; }
+      #debug-tool .body .content .core {
+        position: absolute;
+        top: 0;
+        left: 200px;
+        width: calc(100% - 200px);
+        height: 100%;
+        overflow: auto;
+        padding: 15px; }
+        #debug-tool .body .content .core .toggle-content {
+          display: none; }
+          #debug-tool .body .content .core .toggle-content.active {
+            display: block; }
+  #debug-tool ul.debug-list {
+    position: relative; }
+    #debug-tool ul.debug-list li {
+      position: relative;
+      padding: 10px 0px 10px 30px; }
+      #debug-tool ul.debug-list li:first-child:after {
+        top: 50%;
+        height: 50%; }
+      #debug-tool ul.debug-list li:last-child:after {
+        height: 50%; }
+      #debug-tool ul.debug-list li:after, #debug-tool ul.debug-list li:before {
+        content: "";
+        position: absolute;
+        left: 0; }
+      #debug-tool ul.debug-list li:after {
+        top: 0;
+        width: 1px;
+        height: 100%;
+        background-color: #222222; }
+      #debug-tool ul.debug-list li:before {
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 1px;
+        background-color: #222222; }
+  #debug-tool .debug-table {
+    width: 100%; }
+    #debug-tool .debug-table tr, #debug-tool .debug-table th, #debug-tool .debug-table td {
+      border: 1px solid #E5E5E5; }
+    #debug-tool .debug-table th, #debug-tool .debug-table td {
+      padding: 10px 15px; }
+  #debug-tool pre.sf-dump:focus, #debug-tool pre.sf-dump .sf-dump-default:focus {
+    outline: none; }
+  #debug-tool .color-red {
+    color: #dc3545; }
+  #debug-tool .bg-red {
+    background-color: #dc3545; }
+  #debug-tool .color-green {
+    color: #5e976d; }
+  #debug-tool .bg-green {
+    background-color: #5e976d; }
+  #debug-tool .color-blue {
+    color: #007bff; }
+  #debug-tool .bg-blue {
+    background-color: #007bff; }
+  #debug-tool .color-almost-white {
+    color: #f2F2F2; }
+  #debug-tool .bg-almost-white {
+    background-color: #f2F2F2; }
+  #debug-tool .color-very-light-grey {
+    color: #E5E5E5; }
+  #debug-tool .bg-very-light-grey {
+    background-color: #E5E5E5; }
+  #debug-tool .color-light-grey {
+    color: #aeaeae; }
+  #debug-tool .bg-light-grey {
+    background-color: #aeaeae; }
+  #debug-tool .color-dark-grey {
+    color: #222222; }
+  #debug-tool .bg-dark-grey {
+    background-color: #222222; }
+  #debug-tool .font-xs {
+    font-size: 12px !important; }
+  #debug-tool .font-sm {
+    font-size: 14px !important; }
+  #debug-tool .font-md {
+    font-size: 16px !important; }
+  #debug-tool .font-lg {
+    font-size: 18px !important; }
+  #debug-tool .font-xl {
+    font-size: 20px !important; }
+  #debug-tool .bold {
+    font-weight: 600; }
+  #debug-tool .regular {
+    font-weight: 400; }
+  #debug-tool .tt-u {
+    text-transform: uppercase !important; }
+  #debug-tool .tt-l {
+    text-transform: lowercase !important; }
+  #debug-tool .tt-c {
+    text-transform: capitalize !important; }
+  #debug-tool .td-u {
+    text-decoration: underline !important; }
+  #debug-tool .td-n {
+    text-decoration: none !important; }
+  #debug-tool .fs-i {
+    font-style: italic !important; }
+  #debug-tool .fs-o {
+    font-style: oblique !important; }
+  #debug-tool .fs-n {
+    font-style: normal !important; }
+  #debug-tool .bg-cover {
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important; }
+  #debug-tool .o-v {
+    overflow: visible !important; }
+  #debug-tool .ox-v {
+    overflow-x: visible !important; }
+  #debug-tool .oy-v {
+    overflow-y: visible !important; }
+  #debug-tool .o-h {
+    overflow: hidden !important; }
+  #debug-tool .ox-h {
+    overflow-x: hidden !important; }
+  #debug-tool .oy-h {
+    overflow-y: hidden !important; }
+  #debug-tool .p-r {
+    position: relative !important; }
+  #debug-tool .p-a {
+    position: absolute !important; }
+  #debug-tool .ai-start {
+    align-items: flex-start; }
+  #debug-tool .ai-end {
+    align-items: flex-end; }
+  #debug-tool .ai-center {
+    align-items: center; }
+  #debug-tool .ai-baseline {
+    align-items: baseline; }
+  #debug-tool .ai-stretch {
+    align-items: stretch; }
+  #debug-tool .d-i {
+    display: inline; }
+  #debug-tool .d-ib {
+    display: inline-block; }
+  #debug-tool .d-b {
+    display: block; }
+  #debug-tool .d-f {
+    display: flex; }
+  #debug-tool .jc-start {
+    justify-content: flex-start; }
+  #debug-tool .jc-end {
+    justify-content: flex-end; }
+  #debug-tool .jc-center {
+    justify-content: center; }
+  #debug-tool .jc-between {
+    justify-content: space-between; }
+  #debug-tool .jc-around {
+    justify-content: space-around; }
+  #debug-tool .m-0 {
+    margin: 0 !important; }
+  #debug-tool .mt-0 {
+    margin-top: 0 !important; }
+  #debug-tool .mb-0 {
+    margin-bottom: 0 !important; }
+  #debug-tool .my-0 {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important; }
+  #debug-tool .ml-0 {
+    margin-left: 0 !important; }
+  #debug-tool .mr-0 {
+    margin-right: 0 !important; }
+  #debug-tool .mx-0 {
+    margin-left: 0 !important;
+    margin-right: 0 !important; }
+  #debug-tool .p-0 {
+    padding: 0 !important; }
+  #debug-tool .pt-0 {
+    padding-top: 0 !important; }
+  #debug-tool .pb-0 {
+    padding-bottom: 0 !important; }
+  #debug-tool .py-0 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important; }
+  #debug-tool .pl-0 {
+    padding-left: 0 !important; }
+  #debug-tool .pr-0 {
+    padding-right: 0 !important; }
+  #debug-tool .px-0 {
+    padding-left: 0 !important;
+    padding-right: 0 !important; }
+  #debug-tool .m-xs {
+    margin: 5px !important; }
+  #debug-tool .mt-xs {
+    margin-top: 5px !important; }
+  #debug-tool .mb-xs {
+    margin-bottom: 5px !important; }
+  #debug-tool .my-xs {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important; }
+  #debug-tool .ml-xs {
+    margin-left: 5px !important; }
+  #debug-tool .mr-xs {
+    margin-right: 5px !important; }
+  #debug-tool .mx-xs {
+    margin-left: 5px !important;
+    margin-right: 5px !important; }
+  #debug-tool .p-xs {
+    padding: 5px !important; }
+  #debug-tool .pt-xs {
+    padding-top: 5px !important; }
+  #debug-tool .pb-xs {
+    padding-bottom: 5px !important; }
+  #debug-tool .py-xs {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important; }
+  #debug-tool .pl-xs {
+    padding-left: 5px !important; }
+  #debug-tool .pr-xs {
+    padding-right: 5px !important; }
+  #debug-tool .px-xs {
+    padding-left: 5px !important;
+    padding-right: 5px !important; }
+  #debug-tool .m-sm {
+    margin: 15px !important; }
+  #debug-tool .mt-sm {
+    margin-top: 15px !important; }
+  #debug-tool .mb-sm {
+    margin-bottom: 15px !important; }
+  #debug-tool .my-sm {
+    margin-top: 15px !important;
+    margin-bottom: 15px !important; }
+  #debug-tool .ml-sm {
+    margin-left: 15px !important; }
+  #debug-tool .mr-sm {
+    margin-right: 15px !important; }
+  #debug-tool .mx-sm {
+    margin-left: 15px !important;
+    margin-right: 15px !important; }
+  #debug-tool .p-sm {
+    padding: 15px !important; }
+  #debug-tool .pt-sm {
+    padding-top: 15px !important; }
+  #debug-tool .pb-sm {
+    padding-bottom: 15px !important; }
+  #debug-tool .py-sm {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important; }
+  #debug-tool .pl-sm {
+    padding-left: 15px !important; }
+  #debug-tool .pr-sm {
+    padding-right: 15px !important; }
+  #debug-tool .px-sm {
+    padding-left: 15px !important;
+    padding-right: 15px !important; }
+  #debug-tool .m-md {
+    margin: 30px !important; }
+  #debug-tool .mt-md {
+    margin-top: 30px !important; }
+  #debug-tool .mb-md {
+    margin-bottom: 30px !important; }
+  #debug-tool .my-md {
+    margin-top: 30px !important;
+    margin-bottom: 30px !important; }
+  #debug-tool .ml-md {
+    margin-left: 30px !important; }
+  #debug-tool .mr-md {
+    margin-right: 30px !important; }
+  #debug-tool .mx-md {
+    margin-left: 30px !important;
+    margin-right: 30px !important; }
+  #debug-tool .p-md {
+    padding: 30px !important; }
+  #debug-tool .pt-md {
+    padding-top: 30px !important; }
+  #debug-tool .pb-md {
+    padding-bottom: 30px !important; }
+  #debug-tool .py-md {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important; }
+  #debug-tool .pl-md {
+    padding-left: 30px !important; }
+  #debug-tool .pr-md {
+    padding-right: 30px !important; }
+  #debug-tool .px-md {
+    padding-left: 30px !important;
+    padding-right: 30px !important; }
+  #debug-tool .m-lg {
+    margin: 50px !important; }
+  #debug-tool .mt-lg {
+    margin-top: 50px !important; }
+  #debug-tool .mb-lg {
+    margin-bottom: 50px !important; }
+  #debug-tool .my-lg {
+    margin-top: 50px !important;
+    margin-bottom: 50px !important; }
+  #debug-tool .ml-lg {
+    margin-left: 50px !important; }
+  #debug-tool .mr-lg {
+    margin-right: 50px !important; }
+  #debug-tool .mx-lg {
+    margin-left: 50px !important;
+    margin-right: 50px !important; }
+  #debug-tool .p-lg {
+    padding: 50px !important; }
+  #debug-tool .pt-lg {
+    padding-top: 50px !important; }
+  #debug-tool .pb-lg {
+    padding-bottom: 50px !important; }
+  #debug-tool .py-lg {
+    padding-top: 50px !important;
+    padding-bottom: 50px !important; }
+  #debug-tool .pl-lg {
+    padding-left: 50px !important; }
+  #debug-tool .pr-lg {
+    padding-right: 50px !important; }
+  #debug-tool .px-lg {
+    padding-left: 50px !important;
+    padding-right: 50px !important; }
+  #debug-tool .m-xl {
+    margin: 70px !important; }
+  #debug-tool .mt-xl {
+    margin-top: 70px !important; }
+  #debug-tool .mb-xl {
+    margin-bottom: 70px !important; }
+  #debug-tool .my-xl {
+    margin-top: 70px !important;
+    margin-bottom: 70px !important; }
+  #debug-tool .ml-xl {
+    margin-left: 70px !important; }
+  #debug-tool .mr-xl {
+    margin-right: 70px !important; }
+  #debug-tool .mx-xl {
+    margin-left: 70px !important;
+    margin-right: 70px !important; }
+  #debug-tool .p-xl {
+    padding: 70px !important; }
+  #debug-tool .pt-xl {
+    padding-top: 70px !important; }
+  #debug-tool .pb-xl {
+    padding-bottom: 70px !important; }
+  #debug-tool .py-xl {
+    padding-top: 70px !important;
+    padding-bottom: 70px !important; }
+  #debug-tool .pl-xl {
+    padding-left: 70px !important; }
+  #debug-tool .pr-xl {
+    padding-right: 70px !important; }
+  #debug-tool .px-xl {
+    padding-left: 70px !important;
+    padding-right: 70px !important; }
+  #debug-tool .m-xxl {
+    margin: 140px !important; }
+  #debug-tool .mt-xxl {
+    margin-top: 140px !important; }
+  #debug-tool .mb-xxl {
+    margin-bottom: 140px !important; }
+  #debug-tool .my-xxl {
+    margin-top: 140px !important;
+    margin-bottom: 140px !important; }
+  #debug-tool .ml-xxl {
+    margin-left: 140px !important; }
+  #debug-tool .mr-xxl {
+    margin-right: 140px !important; }
+  #debug-tool .mx-xxl {
+    margin-left: 140px !important;
+    margin-right: 140px !important; }
+  #debug-tool .p-xxl {
+    padding: 140px !important; }
+  #debug-tool .pt-xxl {
+    padding-top: 140px !important; }
+  #debug-tool .pb-xxl {
+    padding-bottom: 140px !important; }
+  #debug-tool .py-xxl {
+    padding-top: 140px !important;
+    padding-bottom: 140px !important; }
+  #debug-tool .pl-xxl {
+    padding-left: 140px !important; }
+  #debug-tool .pr-xxl {
+    padding-right: 140px !important; }
+  #debug-tool .px-xxl {
+    padding-left: 140px !important;
+    padding-right: 140px !important; }
+
+
+/*# sourceMappingURL=debug_tool.css.map*/
