@@ -159,6 +159,13 @@
 							// Create a simple plugin that displays pointer values on every frame
 							Handsfree.use('consoleLogger', (pointer, context) => {
 							console.log(pointer)
+							if (pointer.x < 400) 
+							{
+								window.scrollTo(0, window.scrollY + pointer.y);
+								console.log('pointer X detected');	
+							}
+							if (pointer.x > window.innerHeight)
+							window.scrollTo(0, window.scrollY + (pointer.y - window.innerHeight));
 							})
 
 							
