@@ -104,6 +104,13 @@
 										}
 									},
 									
+									horiScroll: {
+										// The multiplier to scroll by. Lower numbers are slower
+										scrollSpeed: 0.15,
+										// How many pixels from the the edge to scroll
+										scrollZone: 100
+									},
+									
 									vertScroll: {
 										// The multiplier to scroll by. Lower numbers are slower
 										scrollSpeed: 0.15,
@@ -133,26 +140,23 @@
 								}
 							}
 							
-							const handsfree = new Handsfree();
+							const handsfree = new Handsfree(config);
 							
 							Handsfree.use('horizontalScroll', (pointer, handsfree) => {
-								console.log('pointer x: ' + handsfree.head.pointer.x);
-								if (handsfree.head.pointer.x < 400) 
+								console.log('pointer.x: ' + pointer.x );
+								if (pointer.x < 400) 
 								{
-									//window.scrollTo(0, window.scrollY + pointer.y);
-									console.log('pointer X<400 detected');	
+									window.scrollTo(0, window.scrollY + pointer.y);
+									console.log('pointer X detexted');	
 								}
-								if (handsfree.head.pointer.x > window.innerHeight)
-								{
-									window.scrollTo(0, window.scrollY + (handsfree.head.pointer.y - window.innerHeight));
-									console.log('pointer X>window detected');
-								}
+								if (pointer.x > window.innerHeight)
+								window.scrollTo(0, window.scrollY + (pointer.y - window.innerHeight));
 							});
 							
-
+							
+							
 							// Start tracking
 							handsfree.start();
-							console.log(handsfree);
 						</script>
 						
 						
@@ -166,10 +170,10 @@
 								});
 							</script>
 							
-							<div id="open" style="background-color:#222222;position:fixed;bottom:20px;right:20px;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;color:#FFFFFF; border-radius: 25px; align-items:center;justify-content: center;"> <span class="item">+</span> </div>
+							<div id="open" style="background-color:#222222;position:fixed;bottom:20px;right:20px;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;color:#FFFFFF; border-radius: 25px; align-items:center;justify-content: center;"> <span class="item">+</span> <i id="open" class="fal fa-plus-circle" aria-hidden="true"></i></div>
 							<div id="close" style="background-color:#222222;position:fixed;bottom:20px;right:20px;z-index:1000;width:40px;height:40px;text-align:center;cursor:pointer;color:#FFFFFF;display:none; align-items:center;justify-content: center; border-radius: 25px;"> <span class="item">-</span> </div>
 							<div id="back" style="background-color:#222222;position:fixed;top:20px;color:#FFFFFF;left:20px;z-index:1000;padding:5px 20px;text-align:center;cursor:pointer;color:#FFFFFF;  border-radius: 25px;align-items:center;justify-content: center; "><a href="https://www.imersion.io" style="color:#FFFFFF;"> close </a></div>
-							<h1 id="title" data-kira-item="typed" style="position:fixed;bottom:40px; left:40px;z-index:100;">{{ post.title }} <span id="play" style="cursor:pointer; border : solid #FFF 1px; padding: 5px 10px; border-radius: 25px;">Play music</span> <i id="open" class="fal fa-plus-circle" aria-hidden="true"></i></h1>
+							<h1 id="title" data-kira-item="typed" style="position:fixed;bottom:40px; left:40px;z-index:100;">{{ post.title }} <span id="play" style="cursor:pointer; border : solid #FFF 1px; padding: 10px 20px; border-radius: 25px;">Play music</span></h1>
 							{#<i id="open" class="fal fa-plus-circle" aria-hidden="true"></i>#}
 							
 							
@@ -247,7 +251,7 @@
 								</script>
 							</section>
 							<section>
-								<div class="container p-md" id="immersion-info" style="height:0px;position:fixed;bottom:-30px;width:100%;overflow:hidden; background-color:#FFFFFF;display:none;">
+								<div class="container p-md" id="immersion-info" style="height:0px;position:fixed;bottom:-50px;width:100%;overflow:hidden; background-color:#FFFFFF;display:none;">
 									<hr class="infos" style="opacity:0;"/>
 									<h2 data-scroll data-scroll-speed="3" data-scroll-direction="horizontal" class="infos" style="opacity:0;">{{ post.title }}</h2>
 									<h3 class="infos" style="opacity:0;">{{ post.summary }}</h3>
@@ -289,7 +293,7 @@
 							{% if debug %}
 							<script src="{{ dist }}/js/debug_tool.js"></script>
 							{% endif %}
-
+							
 							{% endblock %}	
 							{#
 								|
