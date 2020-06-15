@@ -44264,6 +44264,7 @@ var define = false;
         enter: function enter(data) {
           barbaRouter.load(data.next.namespace);
           document.querySelector('html').classList.add('loaded');
+          var $container = $(data.next.namespace);
           var $layer = $('.layer-transition');
           var timeline = new TimelineMax({
             paused: true,

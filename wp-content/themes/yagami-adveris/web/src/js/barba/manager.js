@@ -42,6 +42,7 @@ export default {
                     barbaRouter.load(data.next.namespace);
                     document.querySelector('html').classList.add('loaded');
 
+                    const $container = $(data.next.namespace);
                     const $layer = $('.layer-transition');
                     const timeline = new TimelineMax({
                         paused: true, 
