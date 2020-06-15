@@ -44251,13 +44251,11 @@ var define = false;
             });
             timeline //.to($container, 1, { y: -100, ease: Expo.easeIn }, 'start')
             //.to($layer, 1, { scaleY: 1, transformOrigin: 'left bottom', ease: Expo.easeInOut }, 'start+=0.4');
-            .to($layer, 0.1, {
-              display: "",
+            .to($container, 3, {
+              autoAlpha: 0,
               ease: Expo.easeInOut
-            }, 'start').to($layer, 2, {
-              autoAlpha: 1,
-              ease: Expo.easeInOut
-            });
+            }, 'start') //.to($layer, 2, {autoAlpha: 1, ease: Expo.easeInOut })
+            ;
             timeline.play();
           });
         },
@@ -44276,19 +44274,14 @@ var define = false;
           });
           timeline //.to($layer, 1, { scaleY: 0, transformOrigin: 'left top', ease: Expo.easeInOut }, 'start')
           //.from($layer, 2, { opacity: 1, height: "100%", ease: Expo.easeOut }, 'start')
-          .to($layer, 0, {
-            display: "",
-            ease: Expo.easeInOut
-          }).to($layer, 0, {
-            autoAlpha: 1,
-            ease: Expo.easeInOut
-          }).to($layer, 2, {
+          .from($container, 3, {
             autoAlpha: 0,
             ease: Expo.easeInOut
-          }).to($layer, 0, {
-            display: "none",
-            ease: Expo.easeInOut
-          });
+          }, 'start') //.to($layer, 0, { display: "", ease: Expo.easeInOut })
+          //.to($layer, 0, { autoAlpha: 1, ease: Expo.easeInOut })
+          //.to($layer, 2, { autoAlpha: 0, ease: Expo.easeInOut })
+          //.to($layer, 0, { display: "none", ease: Expo.easeInOut })
+          ;
           timeline.play();
         },
         afterEnter: function afterEnter(data) {}
@@ -46804,11 +46797,8 @@ var define = false;
         y: -logoCircleHeight,
         autoAlpha: 0,
         ease: Power1.easeOut
-      }, 'step1').to($loaderLogo, 0.4, {
-        y: -logoCircleHeight,
-        opacity: 1,
-        ease: Power1.easeOut
-      }, 'step1') //.to($loaderLogo, 0.4, { y: '-=80', opacity: 0, ease: Power1.easeOut }, '-=0')
+      }, 'step1') //.to($loaderLogo, 0.4, { y: -logoCircleHeight, opacity: 1, ease: Power1.easeOut }, 'step1')
+      //.to($loaderLogo, 0.4, { y: '-=80', opacity: 0, ease: Power1.easeOut }, '-=0')
       //.to($pageLoader, 1, {scaleY: 0, ease: Expo.easeInOut}, 'step2-=0.3')
       //.from($siteContainer, 1, { y: 100, ease: Expo.easeOut }, 'step2+=0.1')
       .addCallback(function () {
@@ -46868,6 +46858,20 @@ var define = false;
         start: '-=0.6',
         triggerHook: 'onEnter'
       }
+    });
+    /*
+    | typed
+    |-----------------------
+    */
+
+    kira.add('typed', function ($item, timeline, start) {
+      var split = new SplitText($item, {
+        type: 'chars'
+      });
+      timeline.staggerFrom(split.chars, 0.4, {
+        opacity: 0,
+        ease: Power0.easeNone
+      }, 0.1);
     });
     /*
     | fadeInUp.parallax.sm
