@@ -54,7 +54,8 @@ export default {
                     timeline
                         //.to($layer, 1, { scaleY: 0, transformOrigin: 'left top', ease: Expo.easeInOut }, 'start')
                         //.from($layer, 2, { opacity: 1, height: "100%", ease: Expo.easeOut }, 'start')
-                        .from($container, 3, { autoAlpha: 0,  ease: Expo.easeInOut }, 'start')
+                        .from($container, 3, { autoAlpha: 0,  ease: Expo.easeInOut })
+                        .to($container, 3, { autoAlpha: 1,  ease: Expo.easeInOut })
                         //.to($layer, 0, { display: "", ease: Expo.easeInOut })
                         //.to($layer, 0, { autoAlpha: 1, ease: Expo.easeInOut })
                         //.to($layer, 2, { autoAlpha: 0, ease: Expo.easeInOut })

@@ -136,10 +136,10 @@
 							const handsfree = new Handsfree();
 							
 							Handsfree.use('horizontalScroll', (pointer, handsfree) => {
-								console.log('pointer X detected NO IF');
+								console.log('pointer x: ' + pointer.x);
 								if (pointer.x < 400) 
 								{
-									window.scrollTo(0, window.scrollY + pointer.y);
+									//window.scrollTo(0, window.scrollY + pointer.y);
 									console.log('pointer X<400 detected');	
 								}
 								if (pointer.x > window.innerHeight)

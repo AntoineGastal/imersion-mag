@@ -44277,7 +44277,10 @@ var define = false;
           .from($container, 3, {
             autoAlpha: 0,
             ease: Expo.easeInOut
-          }, 'start') //.to($layer, 0, { display: "", ease: Expo.easeInOut })
+          }).to($container, 3, {
+            autoAlpha: 1,
+            ease: Expo.easeInOut
+          }) //.to($layer, 0, { display: "", ease: Expo.easeInOut })
           //.to($layer, 0, { autoAlpha: 1, ease: Expo.easeInOut })
           //.to($layer, 2, { autoAlpha: 0, ease: Expo.easeInOut })
           //.to($layer, 0, { display: "none", ease: Expo.easeInOut })
@@ -46793,18 +46796,15 @@ var define = false;
       loader.loaderTimeline.to($loaderCircleSvg, 0.8, {
         drawSVG: "0% 100%",
         ease: Power1.easeOut
-      }).to($loaderCircle, 0.4, {
-        y: -logoCircleHeight,
-        autoAlpha: 0,
-        ease: Power1.easeOut
-      }, 'step1') //.to($loaderLogo, 0.4, { y: -logoCircleHeight, opacity: 1, ease: Power1.easeOut }, 'step1')
+      }, 'step0') //.to($loaderCircle, 0.4, { y: -logoCircleHeight, autoAlpha: 0, ease: Power1.easeOut }, 'step1')
+      //.to($loaderLogo, 0.4, { y: -logoCircleHeight, opacity: 1, ease: Power1.easeOut }, 'step1')
       //.to($loaderLogo, 0.4, { y: '-=80', opacity: 0, ease: Power1.easeOut }, '-=0')
       //.to($pageLoader, 1, {scaleY: 0, ease: Expo.easeInOut}, 'step2-=0.3')
       //.from($siteContainer, 1, { y: 100, ease: Expo.easeOut }, 'step2+=0.1')
       .addCallback(function () {
         app.dispachEvent($body, 'loader:end');
         $('html').addClass('loaded');
-      }, 'step1').to($pageLoader, 0.8, {
+      }, 'step0+=1').to($pageLoader, 0.8, {
         autoAlpha: 0,
         ease: Power1.easeOut
       }, '-=0');
