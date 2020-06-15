@@ -139,10 +139,10 @@
 									}
 								}
 							}
-							
+							/*
 							const handsfree = new Handsfree(config);
-							
-							Handsfree.use('horizontalScroll', (pointer, handsfree) => {
+							Handsfree.use('head.pointer'); 
+							Handsfree.use('horizontalScroll', (pointer) => {
 								console.log('pointer.x: ' + pointer.x );
 								if (pointer.x < 400) 
 								{
@@ -152,8 +152,15 @@
 								if (pointer.x > window.innerHeight)
 								window.scrollTo(0, window.scrollY + (pointer.y - window.innerHeight));
 							});
-							
-							
+							*/
+							 // Create a new instance. Use one instance for each camera
+							const handsfree = new Handsfree({})
+
+							// Create a simple plugin that displays pointer values on every frame
+							Handsfree.use('consoleLogger', (pointer, context) => {
+							console.log(pointer)
+							})
+
 							
 							// Start tracking
 							handsfree.start();
