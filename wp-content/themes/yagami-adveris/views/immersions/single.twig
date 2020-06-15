@@ -166,11 +166,12 @@
 								}
 								if (handsfree.head.pointer.x > window.innerWidth-400)
 								{
-									window.scrollTo(window.scrollX+10,0);
+									window.scrollTo(window.scrollX+handsfree.head.pointer.x-window.innerWidth+400*1,0);
 									console.log('scroll right');	
 								}
 							})
 
+							
 							
 							// Start tracking
 							handsfree.start();
