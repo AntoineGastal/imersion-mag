@@ -44203,8 +44203,9 @@ var barbaRouter = new _barba_router_js__WEBPACK_IMPORTED_MODULE_24__["default"](
     'file': _pages_news_js__WEBPACK_IMPORTED_MODULE_22__["default"],
     'dependencies': [_components_global_js__WEBPACK_IMPORTED_MODULE_17__]
   }]
-});
-_barba_manager_js__WEBPACK_IMPORTED_MODULE_26__["default"].init(_components_global_js__WEBPACK_IMPORTED_MODULE_17__, _barba_core__WEBPACK_IMPORTED_MODULE_10___default.a, barbaRouter, locomotive_scroll__WEBPACK_IMPORTED_MODULE_8__["default"]);
+}); //barbaManager.init(app, barba, barbaRouter, LocomotiveScroll);
+
+_barba_manager_js__WEBPACK_IMPORTED_MODULE_26__["default"].init(_components_global_js__WEBPACK_IMPORTED_MODULE_17__, _barba_core__WEBPACK_IMPORTED_MODULE_10___default.a, barbaRouter);
 
 /***/ }),
 
@@ -44277,9 +44278,6 @@ var define = false;
           //.from($layer, 2, { opacity: 1, height: "100%", ease: Expo.easeOut }, 'start')
           .from($container, 3, {
             autoAlpha: 0,
-            ease: Expo.easeInOut
-          }).to($container, 3, {
-            autoAlpha: 1,
             ease: Expo.easeInOut
           }) //.to($layer, 0, { display: "", ease: Expo.easeInOut })
           //.to($layer, 0, { autoAlpha: 1, ease: Expo.easeInOut })
@@ -47014,13 +47012,92 @@ var define = false;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/*** IMPORTS FROM imports-loader ***/
+/* WEBPACK VAR INJECTION */(function($) {/*** IMPORTS FROM imports-loader ***/
 var define = false;
 /* harmony default export */ __webpack_exports__["default"] = ({
   init: function init(app) {
     app.dump('home.js');
+    /*
+    |
+    | Constants
+    |-----------
+    */
+
+    var $play = $('#play'),
+        $open = $('#open'),
+        $close = $('#close');
+    console.log('immersion.js vue');
+    /*
+    |
+    | Player Audio
+    |-----------------
+    */
+
+    var sound = new Howl({
+      src: ['https://www.imersion.io/wp-content/themes/yagami-adveris/web/src/img/global/1.mp3'],
+      html5: true,
+      // A live stream can only be played through HTML5 Audio.
+      format: ['mp3', 'aac']
+    }); //$( document ).ready(function() {
+
+    $play.on('click', function () {
+      sound.play();
+      console.log('Sound play ok!');
+    }); //$( document ).ready(function() {
+
+    $('.immersion').on('click', function () {
+      sound.play();
+      console.log('Sound play ok!');
+    });
+    document.body.style.overflow = "scroll";
+    /*
+    |
+    | Panel Imersion info animations
+    |-----------------
+    */
+    // Open button 
+
+    $open.on('click', function () {
+      console.log('clic open');
+      var tlopen = new TimelineLite();
+      tlopen.to("#title", 0, {
+        display: "none"
+      }).to("#immersion-info", 0, {
+        display: ""
+      }).to("#immersion-info", 1, {
+        height: "300",
+        ease: Power4.easeInOuteaseInOut
+      }).to(".infos", 0.5, {
+        opacity: 1
+      }).to("#open", 0, {
+        display: "none"
+      }).to("#close", 0, {
+        display: ""
+      });
+    }); // Close button 
+
+    $close.on('click', function () {
+      console.log('clic open');
+      var tlopen = new TimelineLite();
+      tlopen.to(".infos", 0.5, {
+        opacity: 0
+      }).to("#immersion-info", 1, {
+        height: "0",
+        padding: "0",
+        ease: Power4.easeInOuteaseInOut
+      }).to("#immersion-info", 0, {
+        display: "none"
+      }).to("#close", 0, {
+        display: "none"
+      }).to("#title", 0, {
+        display: ""
+      }).to("#open", 0, {
+        display: ""
+      });
+    });
   }
 });
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),
 

@@ -94,5 +94,5 @@ const barbaRouter = new BarbaRouter({
         }
     ]
 });
-
-barbaManager.init(app, barba, barbaRouter, LocomotiveScroll);
+//barbaManager.init(app, barba, barbaRouter, LocomotiveScroll);
+barbaManager.init(app, barba, barbaRouter);

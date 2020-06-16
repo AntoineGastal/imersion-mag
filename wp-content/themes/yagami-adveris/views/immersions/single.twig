@@ -217,16 +217,14 @@
 									src: ['https://www.imersion.io/wp-content/themes/yagami-adveris/web/src/img/global/1.mp3'],
 									html5: true, // A live stream can only be played through HTML5 Audio.
 									format: ['mp3', 'aac']
-								});
-								var testPlay = new Audio().play();
-								if (testPlay && typeof Promise !== 'undefined' && (testPlay instanceof Promise || typeof testPlay.then === 'function')) {
-									testPlay.catch(function() {
-										console.warn('HTML5 Audio pool exhausted, returning potentially locked audio object.');
-									});
-								}
-								
+								});								
 								//$( document ).ready(function() {
 									$play.on('click', () => {
+										sound.play();
+										console.log('Sound play ok!');
+									});
+								//$( document ).ready(function() {
+									$('.immersion').on('click', () => {
 										sound.play();
 										console.log('Sound play ok!');
 									});
@@ -269,20 +267,19 @@
 								</script>
 							</section>
 							<section>
-								<div class="container p-md" id="immersion-info" style="height:0px;position:fixed;bottom:-50px;width:100%;overflow:hidden; background-color:#FFFFFF;display:none;">
-									<hr class="infos" style="opacity:0;"/>
-									<h2 data-scroll data-scroll-speed="3" data-scroll-direction="horizontal" class="infos" style="opacity:0;">{{ post.title }}</h2>
-									<h3 class="infos" style="opacity:0;">{{ post.summary }}</h3>
+								<div class="p-md" id="immersion-info">
+									<h2 class="infos">{{ post.title }}</h2>
+									<h3 class="infos">"{{ post.summary }}"</h3>
 									<br />
-									<p class="infos" style="opacity:0;">Posted by <a href="{{ post.contributor_link }}" target="_blank">{{ post.contributor_name }}</a> on {{ post.date }}.</p>
-									<p class="infos" style="opacity:0;">{{ post.contributor_bio }}</p>
-									<div data-scroll data-scroll-speed="1" data-scroll-direction="horizontal" class="infos" style="opacity:0;">{{ post.content }}</div>
+									<div class="infos">{{ post.content }}</div>
 									<br />
-									<hr class="infos" style="opacity:0;"/>
-									<p class="infos" style="opacity:0;">Address: {{ post.address }} - {{ post.zip_code }} {{ post.city }} ({{ post.country }})</p>
-									<p class="infos" style="opacity:0;"><a href="{{ post.place_link }}" target="_blank">Website</a></p>
+									<p class="infos">Address: {{ post.address }} - {{ post.zip_code }} {{ post.city }} ({{ post.country }})</p>
+									<p class="infos"><a href="{{ post.place_link }}" class="link-black" target="_blank">Website</a></p>
 									<br />
-									<p class="infos" style="opacity:0;">Music: {{ post.music_name }} by {{ post.music_author }}</p>
+									<p class="infos font-xs">Posted by <a href="{{ post.contributor_link }}" class="link-black" target="_blank">{{ post.contributor_name }}</a> on {{ post.date }}.</p>
+									<p class="infos font-xs">{{ post.contributor_bio }}</p>
+									<br />
+									<p class="infos">Music: {{ post.music_name }} by {{ post.music_author }}</p>
 								</div>
 							</section>
 							{% endblock %}

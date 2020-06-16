@@ -12102,8 +12102,7 @@ ul {
 #page-home {
   text-align: center;
   background-color: #f6f4f2;
-  padding-top: 200px;
-  border: solid; }
+  padding-top: 200px; }
 
 /*
 |--------------------
@@ -12133,6 +12132,18 @@ ul {
   font-size: 22px;
   color: rgba(20, 20, 20, 0.6);
   font-weight: 400; }
+
+#immersion-info {
+  height: 0px;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  display: none; }
+
+.infos {
+  opacity: 0; }
 
 /*
 |--------------------

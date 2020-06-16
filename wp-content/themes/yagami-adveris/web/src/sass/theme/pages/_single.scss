@@ -16,3 +16,15 @@
     color: rgba($very-dark-grey, 0.6);
     font-weight: 400;
 }
+#immersion-info {
+    height:0px;
+    position:fixed;
+    bottom:0px;
+    width:100%;
+    overflow:hidden;
+    background-color:#FFFFFF;
+    display:none;
+}
+.infos {
+    opacity: 0;
+}
