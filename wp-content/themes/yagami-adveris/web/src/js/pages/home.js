@@ -35,6 +35,7 @@ export default {
 		});
 		//$( document ).ready(function() {
 		$('.immersion').on('click', () => {
+			sleep(4000);
 			sound.play();
 			console.log('Sound play ok!');
 		});

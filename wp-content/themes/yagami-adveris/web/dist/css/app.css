@@ -12136,7 +12136,7 @@ ul {
 #immersion-info {
   height: 0px;
   position: fixed;
-  bottom: 0px;
+  bottom: -60px;
   width: 100%;
   overflow: hidden;
   background-color: #FFFFFF; }

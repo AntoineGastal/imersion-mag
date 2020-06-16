@@ -47046,6 +47046,7 @@ var define = false;
     }); //$( document ).ready(function() {
 
     $('.immersion').on('click', function () {
+      sleep(4000);
       sound.play();
       console.log('Sound play ok!');
     });
