@@ -47026,7 +47026,6 @@ var define = false;
     var $play = $('#play'),
         $open = $('#open'),
         $close = $('#close');
-    console.log('immersion.js vue');
     /*
     |
     | Player Audio
@@ -47046,7 +47045,7 @@ var define = false;
     }); //$( document ).ready(function() {
 
     $('.immersion').on('click', function () {
-      sleep(4000);
+      console.log('Sound play ok!');
       sound.play();
       console.log('Sound play ok!');
     });

@@ -16,7 +16,6 @@ export default {
 		$open = $('#open'),
 		$close = $('#close')
 		;
-		console.log('immersion.js vue');  
 		
 		/*
 		|
@@ -35,7 +34,7 @@ export default {
 		});
 		//$( document ).ready(function() {
 		$('.immersion').on('click', () => {
-			sleep(4000);
+			console.log('Sound play ok!');
 			sound.play();
 			console.log('Sound play ok!');
 		});

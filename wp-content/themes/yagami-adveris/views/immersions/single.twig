@@ -104,13 +104,6 @@
 										}
 									},
 									
-									horiScroll: {
-										// The multiplier to scroll by. Lower numbers are slower
-										scrollSpeed: 0.15,
-										// How many pixels from the the edge to scroll
-										scrollZone: 100
-									},
-									
 									vertScroll: {
 										// The multiplier to scroll by. Lower numbers are slower
 										scrollSpeed: 0.15,
@@ -158,15 +151,15 @@
 
 							// Create a simple plugin that displays pointer values on every frame
 							Handsfree.use('consoleLogger', (pointer, context) => {
-								//console.log(handsfree.head.pointer.x);
+								console.log(handsfree.head.pointer.x + '//' + window.scrollX);
 								if (handsfree.head.pointer.x < 400) 
 								{
-									window.scrollBy(-100,0);
+									window.scrollBy(-1,0);
 									console.log('scroll left');	
 								}
 								if (handsfree.head.pointer.x > window.innerWidth-400)
 								{
-									window.scrollTo(window.scrollX+1,window.scrollY);
+									window.scrollTo(window.scrollX+10,window.scrollY);
 									console.log('scroll right');	
 								}
 							})
@@ -207,7 +200,7 @@
 								$open = $('#open'),
 								$close = $('#close')
 								;
-								console.log('immersion.js vue');  
+								console.log('immersion.js vue single twig');  
 								
 								/*
 								|
