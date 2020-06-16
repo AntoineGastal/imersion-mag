@@ -11712,7 +11712,6 @@ body {
   font-weight: 200;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  overflow-x: hidden;
   background-color: #14141414; }
 
 h1, h2, h3, h4, h5, h6 {
