@@ -1,0 +1,317 @@
+{# {% extends 'layout.twig' %} #}
+
+<!doctype html>
+<html {{ site.language_attributes }}>
+{#
+	|
+	| Head
+	|-------
+	#}
+	<head>
+		{% include '_layouts/_head.twig' %}
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.0/howler.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		
+		<!-- Require dependencies -->
+		<script src="https://unpkg.com/handsfree@6.1.1/dist/handsfree.js"></script>
+		<link rel="stylesheet" href="https://unpkg.com/handsfree@6.1.1/dist/handsfree.css">
+	</head>
+	
+	{#
+		|
+		| Import macros
+		|----------------
+		#}
+		{% import '_macros/global.twig' as global %}
+		
+		{#
+			|
+			| Body
+			|-------
+			#}
+			<body class="{{ body_class }}" data-barba="wrapper" >
+				<div class="layer-transition"></div>
+				<div data-barba="container" data-barba-namespace="immersions" >
+					<div style="overflow:scroll !important; overflow-y: scroll;">
+						<script>
+							
+							let config = {
+								// Whether Handsfree should automatically start after instantiation
+								autostart: false,
+								
+								debugger: {
+									// Where to inject the debugger into
+									target: document.body,
+									
+									// Whether to show or hide the debugger (video feedback)
+									enabled: false
+								},
+								
+								// Which models you want to use
+								models: {
+									head: {
+										enabled: true,
+										
+										// Run this model every x milliseconds (use 0 for every frame)
+										throttle: 0
+									},
+									bodypix: {
+										enabled: false,
+										
+										// Run this model every x milliseconds (use 0 for every frame)
+										throttle: 0,
+										
+										// The inference method to use: ['segmentPerson', 'segmentPersonParts', 'segmentMultiPerson', 'segmentMultiPersonParts']
+										method: 'segmentPerson',
+										// The method to use to display debugging: ['toMask', 'toColoredPartMask']
+										debugMethod: 'toMask',
+										// @see https://github.com/tensorflow/tfjs-models/tree/master/body-pix#loading-the-model
+										modelConfig: {
+											architecture: 'MobileNetV1',
+											outputStride: 16,
+											multiplier: 0.75,
+											quantBytes: 2
+										}
+									}
+								},
+								
+								// Configs specific to plugins
+								plugin: {
+									head: {
+										pointer: {
+											// How many pixels to shift the pointer by
+											offset: {
+												x: 0,
+												y: 500
+											},
+											
+											// A multiplier that determines how sensitive the pointer is
+											// .5 is half as sensitive, 2 is twice as much
+											speed: {
+												x: 0.5,
+												y: 0.5
+											}
+										}
+									},
+									
+									click: {
+										// Morphs to watch for and their required confidences
+										morphs: {
+											// Right smile (pass 0 to disable this)
+											0: 0.5,
+											// Left smile (pass 0 to disable this)
+											1: 0.5
+										}
+									},
+									
+									vertScroll: {
+										// The multiplier to scroll by. Lower numbers are slower
+										scrollSpeed: 0.15,
+										// How many pixels from the the edge to scroll
+										scrollZone: 100
+									}
+								},
+								
+								// Head morph activations
+								// @see https://github.com/handsfree.js/handsfree/wiki/Head
+								head: {
+									morphs: {
+										threshold: {
+											smileRight: 0.7,
+											smileLeft: 0.7,
+											browLeftDown: 0.8,
+											browRightDown: 0.8,
+											browLeftUp: 0.8,
+											browRightUp: 0.8,
+											eyeLeftClosed: 0.4,
+											eyeRightClosed: 0.4,
+											mouthOpen: 0.3,
+											mouthRound: 0.8,
+											upperLip: 0.5
+										}
+									}
+								}
+							}
+							/*
+							const handsfree = new Handsfree(config);
+							Handsfree.use('head.pointer'); 
+							Handsfree.use('horizontalScroll', (pointer) => {
+								console.log('pointer.x: ' + pointer.x );
+								if (pointer.x < 400) 
+								{
+									window.scrollTo(0, window.scrollY + pointer.y);
+									console.log('pointer X detexted');	
+								}
+								if (pointer.x > window.innerHeight)
+								window.scrollTo(0, window.scrollY + (pointer.y - window.innerHeight));
+							});
+							*/
+							 // Create a new instance. Use one instance for each camera
+							const handsfree = new Handsfree({})
+
+							// Create a simple plugin that displays pointer values on every frame
+							Handsfree.use('consoleLogger', (pointer, context) => {
+								console.log(handsfree.head.pointer.x + '//' + window.scrollX);
+								if (handsfree.head.pointer.x < 400) 
+								{
+									window.scrollBy(-1,0);
+									console.log('scroll left');	
+								}
+								if (handsfree.head.pointer.x > window.innerWidth-400)
+								{
+									window.scrollTo(200,500);
+									console.log('scroll right');	
+								}
+							})
+
+							
+							
+							// Start tracking
+							handsfree.start();
+						</script>
+						
+						
+						{% block content %}
+						<section class="" style"text-align:center;" data-kira-timeline-onload>
+							
+							<div id="immersion_image" style="background-image: url('{{ post.thumbnail.src }}');background-size: cover;background-position: center; width:3000px; height:1000px; margin:0 auto;border: solid 10px black;"></div>
+							<script>
+								$("#immersion_image").on('click', () => {
+									location.href = "https://www.imersion.io/index.php/immersion/maldive-maldives/";
+								});
+							</script>
+							
+							<div id="open" style="background-color:#222222;position:fixed;bottom:20px;right:20px;z-index:1000;text-align:center;cursor:pointer;color:#FFFFFF; border-radius: 25px; align-items:center;justify-content: center; padding:10px 20px;"> <span class="item">+</span> <i id="open" class="fal fa-plus-circle" aria-hidden="true"></i></div>
+							<div id="close" style="background-color:#222222;position:fixed;bottom:20px;right:20px;z-index:1000;text-align:center;cursor:pointer;color:#FFFFFF;display:none; align-items:center;justify-content: center; border-radius: 25px;padding:10px 20px;"> <span class="item">-</span> </div>
+							<div id="back" style="background-color:#222222;position:fixed;top:20px;color:#FFFFFF;left:20px;z-index:1000;padding:5px 20px;text-align:center;cursor:pointer;color:#FFFFFF;  border-radius: 25px;align-items:center;justify-content: center; "><a href="https://www.imersion.io" style="color:#FFFFFF;"> close </a></div>
+							<div id="play" style="cursor:pointer; background-color:#222222;position:fixed;top:20px;color:#FFFFFF;right:20px;z-index:1000;padding:5px 20px;text-align:center;cursor:pointer;color:#FFFFFF;  border-radius: 25px;align-items:center;justify-content: center; ">stop/play music</div>
+							<h1 id="title" data-kira-item="typed" style="position:fixed;bottom:40px; left:40px;z-index:100;">{{ post.title }}</h1>
+							{#<i id="open" class="fal fa-plus-circle" aria-hidden="true"></i>#}
+							
+							
+							<script>
+								/*
+								|
+								| Constants
+								|-----------
+								*/
+								const 
+								$play = $('#play'),
+								$open = $('#open'),
+								$close = $('#close')
+								;
+								console.log('immersion.js vue single twig');  
+								
+								/*
+								|
+								| Player Audio
+								|-----------------
+								*/
+								var sound = new Howl({
+									src: ['https://www.imersion.io/wp-content/themes/yagami-adveris/web/src/img/global/1.mp3'],
+									html5: true, // A live stream can only be played through HTML5 Audio.
+									format: ['mp3', 'aac']
+								});								
+								//$( document ).ready(function() {
+									$play.on('click', () => {
+										sound.play();
+										console.log('Sound play ok!');
+									});
+								//$( document ).ready(function() {
+									$('.immersion').on('click', () => {
+										sound.play();
+										console.log('Sound play ok!');
+									});
+									
+									document.body.style.overflow = "scroll";
+									
+									
+									/*
+									|
+									| Panel Imersion info animations
+									|-----------------
+									*/
+									
+									// Open button 
+									$open.on('click', () => {
+										console.log('clic open');        
+										var tlopen = new TimelineLite();
+										tlopen
+										.to("#title", 0, {display: "none"})
+										.to("#immersion-info", 0, {bottom: "0"})
+										.to("#immersion-info", 0, {display:""})
+										.to("#immersion-info", 1, {height: "300", ease: Power4.easeInOuteaseInOut})
+										.to(".infos", 0.5, {opacity: 1})
+										.to("#open", 0, {display: "none"})
+										.to("#close", 0, {display:"" })
+										;
+									});
+									// Close button 
+									$close.on('click', () => {
+										console.log('clic open');        
+										var tlopen = new TimelineLite();
+										tlopen
+										.to(".infos", 0.5, {opacity: 0})
+										.to("#immersion-info", 1, {height: "0", padding:"0", ease: Power4.easeInOuteaseInOut })
+										.to("#immersion-info", 0, {display: "none"})
+										.to("#close", 0, {display: "none"})
+										.to("#title", 0, {display: ""})
+										.to("#open", 0, {display:""})
+										;
+									}); 
+								</script>
+							</section>
+							<section>
+								<div class="p-md" id="immersion-info">
+									<h2 class="infos">{{ post.title }}</h2>
+									<h3 class="infos">"{{ post.summary }}"</h3>
+									<br />
+									<div class="infos">{{ post.content }}</div>
+									<br />
+									<p class="infos">Address: {{ post.address }} - {{ post.zip_code }} {{ post.city }} ({{ post.country }})</p>
+									<p class="infos"><a href="{{ post.place_link }}" class="link-black" target="_blank">Website</a></p>
+									<br />
+									<p class="infos font-xs">Posted by <a href="{{ post.contributor_link }}" class="link-black" target="_blank">{{ post.contributor_name }}</a> on {{ post.date }}.</p>
+									<p class="infos font-xs">{{ post.contributor_bio }}</p>
+									<br />
+									<p class="infos">Music: {{ post.music_name }} by {{ post.music_author }}</p>
+								</div>
+							</section>
+							{% endblock %}
+							
+						</div>
+					</div>
+					
+					{#
+						|
+						| Debug Tool
+						|------------
+						#}
+						{% if debug %}
+						{% include '_debug-tool/debug-tool.twig' %}
+						{% endif %}
+						
+						
+						{#
+							|
+							| Javascripts
+							|--------------
+							#}
+							{% block javascripts %}
+							<script src="{{ dist }}/js/app.js"></script>
+							
+							{% if debug %}
+							<script src="{{ dist }}/js/debug_tool.js"></script>
+							{% endif %}
+							
+							{% endblock %}	
+							{#
+								|
+								| WP Footer
+								|--------------
+								#}
+								{{ wp_footer }}
+	
+							</body>
+							</html>
+							
