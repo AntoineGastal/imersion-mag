@@ -1,0 +1,69 @@
+#-------------------------------------------------------
+#                 WEBPACK CONFIGURATION
+#-------------------------------------------------------
+#
+# Configuration for webpack.js file
+#
+#
+
+#--------------------- BrowserSync ----------------------
+browserSync:
+  use: false
+  proxy: http://localhost/yagami-site/
+  watch:
+    - ../views/**/*.twig
+    - ../controllers/*.php
+
+#--------------------- Code Linters ---------------------
+linters:
+  scss: false
+  js: false
+
+#--------------------- Entry Points ---------------------
+entry_points:
+  app:
+    - swiper/css/swiper.min.css
+    - ./src/lib/iziModal/css/iziModal.min.css
+    - ./src/sass/app.scss
+    - ./src/js/app.js
+  debug_tool:
+    - ./src/debug-tool/js/debug-tool.js
+    - ./src/debug-tool/scss/debug-tool.scss
+  editor:
+    - ./src/editor/editor.scss
+
+#------------------------ Output -----------------------
+output:
+  path: './dist/js'
+  resources:
+    css: '../css'
+    img: '../img'
+    fonts: '../fonts'
+
+
+#------------------------ Clean ------------------------
+clean:
+  root: './'
+  folders: 
+    - dist
+
+
+#------------------------ Aliases ----------------------
+alias:
+  '@src': './src'
+  '@components': './src/js/components'
+  '@utils': './src/js/utils'
+  '@pages': './src/js/pages'
+  '@lib': './src/lib'
+
+
+#-------------------- Global plugins -------------------
+global_plugins:
+  $: jquery
+  jQuery: jquery
+  window.jQuery: 'jquery'
+
+
+#-------------------- Notifier Logo ------------------
+notifier_title: 'Yagami'
+notifier_logo_path: src/img/utils/yagami.png

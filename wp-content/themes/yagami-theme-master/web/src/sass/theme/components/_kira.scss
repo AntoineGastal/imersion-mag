@@ -1,0 +1,29 @@
+[data-splittext]{
+    opacity: 0;
+
+    &.split-ready {
+        opacity: 1;
+    }
+}
+
+[data-kira-item="splitline"] {
+    .item-line {
+        overflow: hidden;
+    }
+}
+
+[data-kira-item^="fadeIn"] {
+    opacity: 0;
+}
+
+[data-kira-item^="fadeInLeft.stagger"],
+[data-kira-item^="fadeInUp.stagger"]{
+    opacity: 1;
+
+    [data-stagger-item]{
+        opacity: 0;
+    }
+}
+
+
+

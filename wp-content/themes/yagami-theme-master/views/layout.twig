@@ -1,0 +1,114 @@
+<!doctype html>
+<html {{ site.language_attributes }}>
+    {#
+    |
+    | Head
+    |-------
+    #}
+    <head>
+        {% include '_layouts/_head.twig' %}
+    </head>
+    
+    {#
+    |
+    | Import macros
+    |----------------
+    #}
+    {% import '_macros/global.twig' as global %}
+    
+    {#
+    |
+    | Body
+    |-------
+    #}
+    <body class="{{ body_class }}">
+        {#
+        |
+        | Loader
+        |---------
+        #}
+        
+        <div id="page-loader" class="page-loader">
+            <script>
+                if(sessionStorage.getItem('loaded_once') === null){
+                    document.getElementById('page-loader').classList.add('active');
+                }
+            </script>
+            <div class="item-content">
+                <div class="mb-lg">{{ function([services, 'svg'], img ~ '/icon/logo.svg') }}</div>  
+                <div class="item-loadbar">
+                    <div class="item-loadbar-inner"></div>
+                </div>
+            </div>
+        </div>
+
+        {#
+        |
+        | Site container
+        |-----------------
+        #}
+        <div class="site-container">
+            {#
+            |
+            | Header
+            |---------
+            #}
+            {% block header %}
+                {% include '_layouts/header.twig' %}
+            {% endblock %}
+
+            {#
+            |
+            | Content
+            |---------
+            #}
+            {% block content %}{% endblock %}
+
+            {#
+            |
+            | Footer
+            |---------
+            #}
+            {% block footer %}
+                {% include '_layouts/footer.twig' %}
+            {% endblock %}
+
+            {#
+            |
+            | Cookie
+            |---------
+            #}
+            {% include '_includes/cookie.twig' %}
+        </div>
+
+        {#
+        |
+        | Debug Tool
+        |------------
+        #}
+        {% if debug %}
+            {% include '_debug-tool/debug-tool.twig' %}
+        {% endif %}
+
+
+        {#
+        |
+        | Javascripts
+        |--------------
+        #}
+        {% block javascripts %}
+            <script src="{{ dist }}/js/app.js"></script>
+
+            {% if debug %}
+                <script src="{{ dist }}/js/debug_tool.js"></script>
+            {% endif %}
+        {% endblock %}
+	     
+        {#
+        |
+        | WP Footer
+        |--------------
+        #}
+        {{ wp_footer }}
+    </body>
+</html>

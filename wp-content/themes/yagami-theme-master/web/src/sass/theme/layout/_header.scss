@@ -1,0 +1,208 @@
+/*
+|--------------------
+|      HEADER
+|--------------------
+*/
+
+/*
+|
+| Header
+|---------
+*/
+.link-menu{
+    text-transform: uppercase;
+    color: $very-dark-grey;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+#header{
+    width: 100%;
+    position: absolute;
+    z-index: 10;
+
+    .header-container{
+        @extend .container;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        
+
+        .item-logo{
+            svg{
+                path, polygon{
+                    fill: $black;
+                }
+            }
+        }
+
+        .item-nav{
+            display: none;
+
+            .item-menu{
+                display: flex;
+
+                li{
+                    &:not(:last-child){
+                        margin-right: 20px;
+                    }
+
+                    .item-link {
+                        @extend .link-menu;
+                        
+                    }
+                }   
+            }
+
+            @include media-breakpoint-up(xl) {
+                display: flex;
+                align-items: center;
+
+                .item-menu{
+                    margin-right: 25px;
+                }
+            }
+        }
+    }
+
+    .lang-container{
+        position: relative;
+        display: inline-flex;
+        top: 1px;
+        @extend .link-menu;
+        cursor: pointer;
+
+        ul{
+            position: absolute;
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(10px);
+            transition: opacity 1.2s $easeSmooth, transform 2s $easeSmooth;
+        }
+
+        &:hover{
+            ul{
+                opacity: 1!important;
+                visibility: visible!important;
+                transform: translateX(0)!important;
+            }
+        }
+    }
+
+    .btn-menu {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        //width: 56px;
+        //height: 56px;
+        margin-top: 5px;
+        padding: 0;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+
+        &>.item-burger {
+            display: block;
+            width: 25px;
+
+            &>span {
+                display: block;
+                width: 100%;
+                height: 2px;
+                background-color: $very-dark-grey;
+                border-radius: 2px;
+
+                &:nth-child(2) {
+                    margin: 6px 0;
+                }
+            }
+        }
+
+        @include media-breakpoint-up(xl) {
+            display: none;
+        }
+    }
+        
+}
+
+/*
+|
+| Menu
+|-------
+*/
+#mobile-menu{
+    position: fixed;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: $white;
+    overflow: auto;
+    opacity: 0;
+    visibility: hidden;
+    
+    .item-container{
+        @extend .container;
+        //padding-top: 150px;
+        //padding-bottom: 50px;
+
+        ul {
+            & > li {
+                &:not(:last-child){
+                    margin-bottom: 20px;
+                }
+
+                a {
+                    text-transform: uppercase;
+                    color: $very-dark-grey;
+                    font-size: 30px;
+                    font-weight: 500;
+                    -webkit-font-smoothing: antialiased;
+
+                    @include media-breakpoint-down(xs) {
+                        font-size: 26px;
+                    }
+                }
+            }
+        }
+    }
+
+    .item-socials-container{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+
+        .item-socials{
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+
+            a{
+                font-size: 25px;
+
+                &:not(:last-child){
+                    margin-right: 25px;
+                }
+            }
+
+            @include media-breakpoint-down(xs) {
+                margin-bottom: 15px;
+
+                a{
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+    
+}

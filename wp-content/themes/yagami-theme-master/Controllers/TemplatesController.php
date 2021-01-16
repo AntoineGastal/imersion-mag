@@ -1,0 +1,87 @@
+<?php 
+/**
+* Class name: TemplatesController()
+*
+* A controller class is composed of methods suffixed with "Action", and responsibles for the following tasks:
+* - Render the correct Twig/Timber template for the current page
+* - Do the business logic associated to the current page
+* - Provide the datas to the Twig/Timber templates
+*
+* @author : Kévin Vacherot <kevinvacherot@gmail.com>
+*/
+
+namespace Controllers;
+
+use \TimberPost;
+use \Timber\PostQuery;
+use \Timber;
+
+class TemplatesController extends AppController
+{
+    /**
+     * __Constructor:
+    *
+    * Call AppController::__construct to inherit AppController useful methods
+    *
+    * @return void
+    */
+    public function __construct(){
+        parent::__construct();
+    }
+
+
+    /**
+     * Method called by Router::routing()
+    *
+    * homeAction() method renders <templates/home> and provide it some datas
+    *
+    * @return void
+    */
+    public function homeAction(){
+        $this->render('templates/home.twig', array(
+            'post' => new TimberPost
+        ));
+    }
+
+
+    /**
+     * Method called by Router::routing()
+    *
+    * cmsAction() method renders <templates/cms> and provide it some datas
+    *
+    * @return void
+    */
+    public function cmsAction(){
+        $this->render('templates/cms.twig', array(
+            'post' => new TimberPost
+        ));
+    }
+
+
+    /**
+     * Method called by Router::routing()
+    *
+    * contactAction() method renders <templates/contact> and provide it some datas
+    *
+    * @return void
+    */
+    public function contactAction(){
+        $this->render('templates/contact.twig', array(
+            'post' => new TimberPost
+        ));
+    }
+
+
+    /**
+     * Method called by Router::routing()
+    *
+    * SampleAction() method renders <templates/sample> and provide it some datas
+    *
+    * @return void
+    */
+    public function sampleAction(){
+        $this->render('templates/sample.twig', array(
+            'post' => new TimberPost
+        ));
+    }
+}
