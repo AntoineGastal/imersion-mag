@@ -6,4 +6,5 @@ web/node_modules/
 .DS_Store
 
 #Dist
-web/dist/*
+# commented by AG 17/1/2021
+#web/dist/*
