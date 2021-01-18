@@ -68,7 +68,7 @@ $table_prefix = 'ag_';
 
 
 define( 'WP_DEBUG', true );
-define( 'WP_DEBUG_LOG', false );
+define( 'WP_DEBUG_LOG', true );
 
 
 /* That's all, stop editing! Happy blogging. */
