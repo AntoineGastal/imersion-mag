@@ -21,14 +21,15 @@
 // ** MySQL settings ** //
 /** The name of the database for WordPress */
 //define( 'DB_NAME', 'ag-bdd-2050-online' );
-define( 'DB_NAME', 'ag-imersiv' );
-
+//define( 'DB_NAME', 'ag-imersiv' );
+define( 'DB_NAME', 'ag-bdd-mag-imersion' );
 
 /** MySQL database username */
 define( 'DB_USER', 'root' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', 'root' );
+//define( 'DB_PASSWORD', 'root' );
+define( 'DB_PASSWORD', 'qJpr6RThAC2rxj2r9b77' );
 
 /** MySQL hostname */
 define( 'DB_HOST', 'localhost' );
@@ -68,7 +69,7 @@ $table_prefix = 'ag_';
 
 
 define( 'WP_DEBUG', true );
-define( 'WP_DEBUG_LOG', true );
+define( 'WP_DEBUG_LOG', false );
 
 
 /* That's all, stop editing! Happy blogging. */
