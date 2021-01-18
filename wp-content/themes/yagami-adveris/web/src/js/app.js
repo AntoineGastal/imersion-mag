@@ -9,7 +9,7 @@ import { TweenMax } from "gsap/TweenMax";
 import { TimelineMax } from "gsap/TimelineMax";
 import CustomEase from "@lib/gsap-pro/CustomEase";
 import SplitText from "@lib/gsap-pro/SplitText";
-import ScrollTo from "gsap/ScrollToPlugin";
+import ScrollTo from "gsap/ScrollToPlugin"; 
 //import 'scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js';
 import 'scrollmagic/scrollmagic/uncompressed/plugins/jquery.ScrollMagic.js';
 import 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js';
