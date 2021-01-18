@@ -6,6 +6,7 @@
 require('@lib/iziModal/js/iziModal.js')($); //désolé
 import Swiper from 'swiper/js/swiper.min';
 import { TweenMax } from "gsap/TweenMax";
+import { TimelineMax } from "gsap/TimelineMax";
 import CustomEase from "@lib/gsap-pro/CustomEase";
 import SplitText from "@lib/gsap-pro/SplitText";
 import ScrollTo from "gsap/ScrollToPlugin";
