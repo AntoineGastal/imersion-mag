@@ -67,7 +67,7 @@ define( 'WP_CACHE_KEY_SALT', '2}t:fN4j`EE8;+FO/AZT#>V~M4O|O>]m_W.(nC%ZDr@*L(YMsj
 $table_prefix = 'ag_';
 
 
-define( 'WP_DEBUG', false );
+define( 'WP_DEBUG', true );
 define( 'WP_DEBUG_LOG', false );
 
 
