@@ -66,7 +66,7 @@ export default {
         } 
         
         if ($pageLoader.hasClass('active')){
-            const loaderTl = new TimelineMax({ paused: true, /*onComplete: () => $pageLoader.remove()*/ });
+            const loaderTl = gsap.timeline({ paused: true, /*onComplete: () => $pageLoader.remove()*/ });
 
             loaderTl.to($pageLoader.find('.item-loadbar-inner'), 0.4, { scaleX: 1, ease: Power0.easeNone }, 'start')
             loaderTl.to($pageLoader.find('.item-content'), 0.8, { autoAlpha: 0, ease: Power1.easeOut }, '-=0')
