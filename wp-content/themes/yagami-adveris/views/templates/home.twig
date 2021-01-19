@@ -9,11 +9,10 @@
         |-----------------
         #}
         {{ global.banner({
-            'title': translations.yagami_demo_title,
-            'image': img ~ '/global/theme.jpg',
-            'content': translations.yagami_demo_content
+            'title': "Discover amazing places around the world",
+            'image': img ~ '/global/home.jpg',
+            'content': "Imersion Magazine presents a selection of amazing places on Earth: beautiful islands, wild landscapes, trendy bars,..."
         }) }}
-
 
         {#
         |
@@ -24,9 +23,9 @@
             <div class="container">
                 <div class="row loaded-posts mb-md-child">
                     {% for key, value in posts %}
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             {{ global.card({
-                                'image'  : img ~ '/global/theme-sm.jpg',
+                                'image'  : value.thumbnail.src,
                                 'terms'  : value.get_terms('category'),
                                 'title'  : value.title,
                                 'date'   : value.date|date('F Y')|capitalize,
@@ -46,29 +45,20 @@
         | Section Content
         |------------------
         #}
-        {% set titlesType = {
-            'title-xxl' : "Im a XXLarge title",
-            'title-xl' : "Im a XLarge title",
-            'title-lg' : "Im a Large title",
-            'title-md' : "Im a Medium title",
-            'title-sm' : "Im a Small title",
-            'title-xs' : "Im a Xsmall title"
-        } %}
 
         <section class="section">
             <div class="container mb-xl-child-not-last">
-                {% for class, title in titlesType %}
+
                     <div>
-                        <h2 class="{{ class }} mb-md">{{ title }}</h2>
+                        <h2 class="mb-md">{{ title }}</h2>
                         <div class="row">
                             <div class="col-lg-7">
                                 <div class="cms">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum vitae sunt rem eveniet, doloremque quaerat! Laboriosam labore sunt porro nostrum eaque vero rerum quo iste. Asperiores harum odio similique aliquid.
+                                    {{ description }}
                                 </div>
                             </div>
                         </div>
                     </div>
-                {% endfor %}
                 
             </div>            
         </section>

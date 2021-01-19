@@ -4,13 +4,14 @@
 |------------------
 */
 require('@lib/iziModal/js/iziModal.js')($); //désolé
+import gsap from "gsap";
 import Swiper from 'swiper/js/swiper.min';
 //import { TweenMax } from "gsap/TweenMax";
 //import { TimelineMax } from "gsap/TimelineMax";
-import { TweenMax, TimelineMax } from "gsap/TweenMax";
-import CustomEase from "@lib/gsap-pro/CustomEase";
-import SplitText from "@lib/gsap-pro/SplitText";
-import ScrollTo from "gsap/ScrollToPlugin"; 
+//import { TweenMax, TimelineMax } from "gsap/TweenMax";
+//import CustomEase from "@lib/gsap-pro/CustomEase";
+//import SplitText from "@lib/gsap-pro/SplitText";
+//import ScrollTo from "gsap/ScrollToPlugin"; 
 //import 'scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js';
 import 'scrollmagic/scrollmagic/uncompressed/plugins/jquery.ScrollMagic.js';
 import 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js';

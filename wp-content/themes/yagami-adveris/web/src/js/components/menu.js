@@ -60,7 +60,7 @@ class Menu
 	|---------------
 	*/
 	initTimeline(){
-		return new TimelineMax({ 
+		return gsap.timeline({ 
 			paused: true,
 			onComplete: this.handleComplete,
 			onReverseComplete: this.handleReverseComplete
