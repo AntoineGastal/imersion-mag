@@ -61,7 +61,7 @@
         "@fortawesome/pro-light-svg-icons": "^5.2.0",
         "@fortawesome/pro-regular-svg-icons": "^5.2.0",
         "@fortawesome/pro-solid-svg-icons": "^5.2.0",
-        "gsap": "^1.20.3",
+        "gsap": "^3.6.0",
         "howler": "^2.2.0",
         "izimodal": "^1.5.1",
         "jquery": "^3.3.1",
