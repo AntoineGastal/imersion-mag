@@ -18,18 +18,25 @@ gsap.registerPlugin(ScrollTrigger);
 //gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(CustomEase);
 */
-import Swiper from 'swiper/js/swiper.min';
-import gsap from "gsap";
+//import Swiper from 'swiper/js/swiper.min';
+//import gsap from "gsap";
 //import CustomEase from "gsap/CustomEase";
 //import DrawSVGPlugin from "@lib/gsap-pro/DrawSVGPlugin";
-import SplitText from "@lib/gsap-pro/SplitText";
-import Plyr from 'plyr/src/js/plyr';
-import ScrollTrigger from "gsap/ScrollTrigger";
+//import SplitText from "@lib/gsap-pro/SplitText";
+//import Plyr from 'plyr/src/js/plyr';
+//import ScrollTrigger from "gsap/ScrollTrigger";
 //import LocomotiveScroll from '@lib/locomotive-scroll/src/locomotive-scroll';
 
-gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(CustomEase);
+//gsap.registerPlugin(ScrollTrigger);
+//gsap.registerPlugin(CustomEase);
 
+
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CustomEase } from "gsap/CustomEase";
+//import { SplitText } from "gsap/SplitText";
+
+gsap.registerPlugin(ScrollTrigger, CustomEase);
 
 /*
 |
@@ -79,11 +86,6 @@ const routes = new Router([
 		'file': home, 
         'dependencies': [app, gsap, ScrollTrigger, MaterializeForm],
         'resolve': '#page-home'
-    },
-    {
-		'file': product, 
-		'dependencies': [app, gsap, ScrollTrigger],
-		'resolve': '#page-product'
     },
     {
 		'file': news, 
