@@ -7,6 +7,8 @@
 |
 */
 
+import gsap from 'gsap';
+
 /*
 |
 | Class
@@ -47,7 +49,7 @@ class MaterializeForm {
                 'duration': this.isDefined(duration) ? duration : 0.3,
                 'scale'   : this.isDefined(scale)    ? scale    : 0.7,
                 'y'       : this.isDefined(y)        ? y        : -10,
-                'ease'    : this.isDefined(ease)     ? ease     : Power1.easeOut
+                'ease'    : this.isDefined(ease)     ? ease     : 'Power1.out'
             },
             'focusedClasses': {
                 'group': 'materialize-group-focused',
@@ -63,7 +65,7 @@ class MaterializeForm {
     |---------------
     */
     initTimeline() {
-        return new TimelineMax({
+        return gsap.timeline({
             paused: true,
             onComplete: this.handleComplete,
             onReverseComplete: this.handleReverseComplete
@@ -140,7 +142,7 @@ class MaterializeForm {
     animateFocus($label){
         const { duration, scale, y, ease } = this.params.labelEffect;
 
-        TweenMax.to($label, duration, { scale: scale, y: y, transformOrigin: 'left top', ease: ease })
+        gsap.to($label, duration, { scale: scale, y: y, transformOrigin: 'left top', ease: ease })
     }
     
     /**
@@ -166,7 +168,7 @@ class MaterializeForm {
     animateBlur($label) {
         const { duration, ease } = this.params.labelEffect;
 
-        TweenMax.to($label, duration, { scale: 1, y: 0, transformOrigin: 'left top', ease: ease })
+        gsap.to($label, duration, { scale: 1, y: 0, transformOrigin: 'left top', ease: ease })
     }
 
     /**

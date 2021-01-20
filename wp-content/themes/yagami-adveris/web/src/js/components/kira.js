@@ -3,463 +3,165 @@
 |                                   KIRA
 |--------------------------------------------------------------------------------
 |
-| Kira is a lightweight library to handle Greensock Timelines & ScrollMagic Scenes
+| Kira is a lightweight library to handle scroll animations using GSAP & Scroll Trigger
 |
 */
 
 /*
-TODO:
-    - optimize propertize
-    - manage stagger
-    - trigger events named timelines --> remove timeline name feature
-    - generate scenes
-    - kira addScrollTween / addLoadTween instead of "add" for both
-    - debug mode
-    - handle data start
-    - error messages for animation item that not exist
-    - handle events on which run "onload timelines"
-    - split all items
+|
+| Dependencies
+|---------------
 */
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 /*
 |
 | Class
 |--------
-|
 */
-class Kira {
+class Kira{
     /*
     |
     | Constructor
     |--------------
     */
-    constructor(scrollmagic, params = {}) {
-        this.scrollmagic = scrollmagic;
-        this.defaults = this.initDefaults();
-        this.params = this.initParams(params);
-        this.timelines = {};
-        this.scenes = {};
+    constructor(params = {}){
+        this.params = this.getParams(params);
         this.tweens = {};
-        this.scrollMagicController = null;
     }
 
 
     /*
     |
-    | initDefaults
-    |---------------
-    */
-    initDefaults() {
-        return {
-            debug: false,
-            loadEvent: {
-                'domElement': null,
-                'eventName': null
-            },
-            optimize: false,
-            options: {
-                'start': '-=0.4',
-                'triggerHook': 'onCenter',
-                'reverse': true
-            },
-            selectors: {
-                'onLoadWrappers': {
-                    'element': $('[data-kira-timeline-onload]'),
-                    'data': 'kira-timeline-onload'
-                },
-                'onScrollWrappers': {
-                    'element': $('[data-kira-timeline]'),
-                    'data': 'kira-timeline'
-                },
-                'item': {
-                    'element': $('[data-kira-item]'),
-                    'data': 'kira-item'
-                }
-
-            }
-        };
-    }
-
-
-    /*
-    |
-    | initParams
+    | getDefaults
     |--------------
     */
-    initParams(params) {
-        let paramsObj = {
-            ...this.defaults
-        };
-        const {
-            debug,
-            loadEvent,
-            optimize,
-            options
-        } = params;
-
-        if (this.isDefined(debug)) {
-            paramsObj = {
-                ...paramsObj,
-                debug
-            };
+    getDefaults(){
+        return {
+            loadEvent     : [window, 'DOMContentLoaded'],
+            scrollTrigger : {
+                start         : 'top bottom',
+                toggleActions : 'play complete none reset'
+            },
+            tweenParams   : {
+                start : '-=0.4',
+            },
+            selectors     : {
+                wrappers : '[data-kira-timeline]',
+                items    : '[data-kira-item]'
+            }
         }
-
-        if (this.isDefined(loadEvent)) {
-            paramsObj.loadEvent = {
-                ...paramsObj.loadEvent,
-                ...loadEvent
-            };
-        }
-
-        if (this.isDefined(optimize)) {
-            paramsObj = {
-                ...paramsObj,
-                optimize
-            };
-        }
-
-        if (this.isDefined(options)) {
-            paramsObj.options = {
-                ...paramsObj.options,
-                ...options
-            };
-        }
-
-        return paramsObj;
     }
 
 
-    /**
-	|
-	| Init
-	|-------
+    /*
+    |
+    | getParams
+    |--------------
     */
-    init() {
-        if (this.scrollMagicIsDefined()) {
-            this.runOnloadAnimations();
-            this.runOnScrollAnimations();
+    getParams(params){
+        const defaults = { ...this.getDefaults() };
+        const { scrollTrigger, tweenParams, selectors, ...uniterableParams } = params;
+
+        if(params.hasOwnProperty('scrollTrigger')){
+            defaults.scrollTrigger = { ...defaults.scrollTrigger, ...scrollTrigger };
         }
+
+        if(params.hasOwnProperty('tweenParams')){
+            defaults.tweenParams   = { ...defaults.tweenParams, ...tweenParams };
+        }
+
+        return { ...defaults, ...uniterableParams };
     }
 
 
-    /**
-	|
-	| setTimeline
-	|--------------
-	|
-	*/
-    setTimeline(timelineName, paused, $selector) {
-        const _this = this;
-        const timeline = new TimelineMax({
-            paused: paused,
-            onStart: function () {
-                _this.dispachEvent($selector, 'kira:timelineStart', {
-                    timeline: this
-                });
-            },
-            onUpdate: function () {
-                _this.dispachEvent($selector, 'kira:timelineUpdate', {
-                    timeline: this
-                });
-            },
-            onComplete: function () {
-                _this.dispachEvent($selector, 'kira:timelineComplete', {
-                    timeline: this
-                });
-            },
-        });
+    /*
+    |
+    | Init
+    |-------
+    */
+    init(){
+        const wrappers = gsap.utils.toArray(this.params.selectors.wrappers);
+        
+        wrappers.forEach(wrapper => wrapper.dataset.kiraTimeline === 'onload' ? this.runEntranceAnimations(wrapper) : this.runScrollAnimations(wrapper));
+    }
 
-        _this.registerTimeline(timelineName, timeline);
+
+    /*
+    |
+    | runEntranceAnimations
+    |------------------------
+    */
+    runEntranceAnimations(wrapper){
+        const [ domElement, event ] = this.params.loadEvent;
+        const timeline              = this.createTimeline(wrapper, { paused: true });
+
+        domElement.addEventListener(event, () => timeline.play(), false);
+    }
+
+
+    /*
+    |
+    | runScrollAnimations
+    |----------------------
+    */
+    runScrollAnimations(wrapper){
+        const { scrollTrigger } = this.params;
+        const additionalScrollTriggerOptions = { 
+            trigger: wrapper
+        }
+        let timelineOptions = {};
+        
+        timelineOptions.scrollTrigger = { ...scrollTrigger, ...additionalScrollTriggerOptions };
+        
+        this.createTimeline(wrapper, timelineOptions);
+    }
+
+
+    /*
+    |
+    | createTimeline
+    |-----------------
+    */
+    createTimeline(wrapper, timelineOptions = {}){
+        const timeline                = gsap.timeline(timelineOptions);
+        const { items: kiraItems }    = this.params.selectors;
+        const { start: startDefault } = this.params.tweenParams;
+        const items                   = wrapper.querySelectorAll(kiraItems);
+
+        items.forEach((item, index) => {
+            const dataItem  = item.dataset.kiraItem;
+            const dataStart = item.dataset.start;
+            let start       = index === 0 ? 'start' : startDefault;
+            start           = dataStart ? dataStart : start;
+            
+            this.tweenExists(dataItem) && this.tweens[dataItem](item, timeline, start);
+        });
 
         return timeline;
     }
 
 
-    /**
-	|
-	| registerTimeline
-	|-------------------
-	|
-	*/
-    registerTimeline(timelineName, timeline) {
-        if (this.isDefined(timelineName)) {
-            this.timelines[String(timelineName)] = timeline;
-        }
-    }
-
-
-    /**
-	|
-	| runOnloadAnimations
-	|----------------------
-    */
-    runOnloadAnimations() {
-        const {
-            domElement,
-            eventName
-        } = this.params.loadEvent;
-
-        if (domElement !== null && eventName !== null) {
-            domElement.on(eventName, () =>{
-                this.initTimelines('onLoadWrappers')
-            } )
-        } else {
-            this.initTimelines('onLoadWrappers')
-        }
-
-    }
-
-
-    /**
-	|
-	| initTimelines
-	|----------------
-    */
-    initTimelines(selectorKey, paused = true, autoplay = true) {
-        const _this = this;
-        const selector = this.params.selectors[selectorKey];
-        const $selector = selector.element;
-        const selectorData = selector.data;
-
-        $.each($selector, function () {
-            const $this = $(this);
-            
-            if (_this.isValidTimeline($this)) {
-                const timelineName = $this.data(selectorData);
-                const timeline = _this.setTimeline(timelineName, paused, $this);
-
-                _this.generateTimelineTweens({
-                    'selector': $this,
-                    'timeline': timeline,
-                    'timelineName': timelineName
-                });
-                autoplay && timeline.play();
-            }
-        });
-    }
-
-
-    /**
-	|
-	| runOnScrollAnimations
-	|------------------------
-	|
-	*/
-    runOnScrollAnimations() {
-        const _this = this;
-        const ScrollMagic = this.scrollmagic;
-        const controller = this.getScrollMagicController(ScrollMagic);
-        const {
-            element: $selector,
-            data
-        } = this.params.selectors.onScrollWrappers;
-        let scenes = [];
-
-        $.each($selector, function () {
-            scenes.push(_this.createScene($(this), data, ScrollMagic));
-        });
-
-        controller.addScene(scenes);
-    }
-
-
-    /**
+    /*
     |
-    | getScrollMagicController
-    |---------------------------
-    |
+    | add
+    |------
     */
-    getScrollMagicController(ScrollMagic) {
-        if (this.scrollMagicController === null) {
-            this.scrollMagicController = new ScrollMagic.Controller();
-        }
-
-        return this.scrollMagicController;
+    add(key, callback){
+        this.tweens[key] = callback;
     }
 
 
-    /**
+    /*
     |
-    | createScene
-    |--------------
-    |
+    | tweenExists
+    |-------------
     */
-    createScene($selector, dataName, ScrollMagic) {
-        let scene = null;
-
-        if (this.isValidTimeline($selector)) {
-            const timelineName = $selector.data(dataName);
-            const timeline = this.setTimeline(timelineName, false, $selector);
-            const options = this.getSceneOptions($selector);
-
-            this.generateTimelineTweens({
-                'selector': $selector,
-                'timeline': timeline,
-                'timelineName': timelineName
-            });
-            scene = new ScrollMagic.Scene(options).setTween(timeline)
-            this.params.debug && scene.addIndicators();
-            this.registerScene(timelineName, scene);
-        }
-
-        return scene;
-    }
-
-
-    /**
-	|
-	| registerScene
-	|----------------
-	|
-	*/
-    registerScene(timelineName, scene) {
-        this.scenes[timelineName] = scene;
-    }
-
-
-    /**
-	|
-	| getSceneOptions
-	|------------------
-	|
-	*/
-    getSceneOptions($selector) {
-        const {
-            triggerHook,
-            reverse
-        } = $selector.data();
-        const {
-            triggerHook: defaultTriggerHook,
-            reverse: defaultReverse
-        } = this.params.options;
-
-        let returnObject = {
-            triggerElement: $selector,
-            triggerHook: this.isDefined(triggerHook) ? triggerHook : defaultTriggerHook,
-            reverse: this.isDefined(reverse) ? reverse : defaultReverse
-        };
-
-        return returnObject;
-    }
-
-
-
-
-
-    /**
-	|
-	| generateTimelineTweens
-	|-------------------------
-	|
-	*/
-    generateTimelineTweens(params) {
-        const _this = this;
-        const tweens = _this.tweens;
-        const {
-            selector: $selector,
-            timeline
-        } = params;
-        const {
-            item
-        } = this.params.selectors;
-        const {
-            element,
-            data
-        } = item
-
-        $.each($selector.find(element), function (key, value) {
-            const $item = $(this);
-            const item = $item.data(data);
-            const dataStart = $item.data('start');
-
-            let start = key === 0 ? 'start' : _this.params.options.start;
-            start = dataStart ? dataStart : start;
-
-            _this.isDefined(tweens[item]) && tweens[item]($item, timeline, start);
-        });
-    }
-
-
-    /**
-	|
-	| Helper: isValidTimeline
-	|--------------------------
-	|
-	*/
-    add(index, callback) {
-        this.tweens[index] = callback;
-    }
-
-
-    /**
-	|
-	| Helper: isValidTimeline
-	|--------------------------
-	|
-	*/
-    isValidTimeline($selector) {
-        const dataTimeline = $selector.data('kira-timeline');
-        let isValid = true;
-        let message;
-
-        if (dataTimeline !== '') {
-            if (this.isDefined(this.timelines[dataTimeline])) {
-                isValid = false;
-                message = this.getMessage('isValidTimelineDuplicate', dataTimeline);
-            }
-        }
-
-        return this.control(isValid, message, $selector);
-    }
-
-
-    /**
-    |
-    | ScrollMagicIsDefined
-    |-----------------------
-    */
-    scrollMagicIsDefined() {
-        return this.control(this.isDefined(this.scrollmagic), this.getMessage('scrollMagicIsDefined'));
-    }
-
-
-    /**
-	|
-	| Helper: dispachEvent
-	|-----------------------
-	|
-	*/
-    dispachEvent($element, eventName, datas = null) {
-        var event = $.Event(eventName);
-
-        if (datas !== null) {
-            $.each(datas, function (key, value) {
-                event[key] = value
-            });
-        }
-
-        $element.trigger(event);
-    }
-
-
-    /**
-	|
-	| Helper: isDefined
-	|--------------------
-	|
-	*/
-    isDefined(item) {
-        return typeof item !== 'undefined';
-    }
-
-
-    /**
-	|
-	| Helper: exist
-	|----------------
-	*/
-    exist($item) {
-        return $item.length;
+    tweenExists(kiraItem){
+        return this.control(this.tweens.hasOwnProperty(kiraItem), this.getMessage('tween_not_exist', kiraItem));
     }
 
 
@@ -480,19 +182,19 @@ class Kira {
         return condition;
     }
 
+    
+    /*
+    |
+    |  Helper: getMessage
+    |----------------------
+    */
+    getMessage(key, ...strings){
+        const messages = {
+            'tween_exist' : `The tween: "${ strings[0] }" has already been defined`,
+            'tween_not_exist' : `The tween: "${ strings[0] }" not exist`,
+        }
 
-    /**
-	|
-	| Helper: getMessage
-	|---------------------
-	*/
-    getMessage(messageKey, var1 = '', var2 = '') {
-        var messages = {
-            'scrollMagicIsDefined': 'ScrollMagic is required to init Kira.',
-            'isValidTimelineDuplicate': 'You already have a timeline called ' + var1 + ', rename it at: ',
-        };
-
-        return 'Kira: ' + messages[messageKey];
+        return messages[key];
     }
 }
 

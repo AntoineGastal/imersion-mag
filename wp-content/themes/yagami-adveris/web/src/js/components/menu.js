@@ -1,3 +1,4 @@
+import gsap from "gsap";
 /*
 |--------------------------------------------------------------------------------
 |                                   Menu
@@ -21,11 +22,11 @@ class Menu
     | Constructor
     |--------------
     */
-    constructor($menuWrapper, $menuButton, params = {}) {
+    constructor(menuWrapper, menuButton, params = {}) {
 		this.bindMethods();
 
-        this.menuWrapper  = $menuWrapper;
-		this.menuButton   = $menuButton;
+        this.menuWrapper  = menuWrapper;
+		this.menuButton   = menuButton;
 		this.menuTimeline = this.initTimeline();
 		this.params 	  = this.initParams(params);
 	}
@@ -84,17 +85,17 @@ class Menu
     |-------------------
     */
 	handleToggleMenu(){
-		const $menuButton      = this.menuButton;
+		const menuButton      = this.menuButton;
 		const menuTimeline     = this.menuTimeline;
 		const reverseTimeScale = this.params.reverseTimeScale;
 
-		$menuButton.on('click', () => {            
+		menuButton.addEventListener('click', () => {            
 			if (this.menuIsActive()){
                 this.close();
 			} else {
                 this.open();
             }
-        });
+        }, false);
 	} 
 
 	/**
@@ -121,7 +122,7 @@ class Menu
 	|-------
 	*/
     open(){
-        this.menuTimeline.play().timeScale(1);
+        this.menuTimeline.timeScale(1).play();
         this.dispachEvent(this.menuWrapper, 'menu:open');
     }
 
@@ -131,7 +132,7 @@ class Menu
 	|-------
 	*/
     close() {
-        this.menuTimeline.reverse().timeScale(this.params.reverseTimeScale);
+        this.menuTimeline.timeScale(this.params.reverseTimeScale).reverse();
         this.dispachEvent(this.menuWrapper, 'menu:close');
     }
 
@@ -150,7 +151,6 @@ class Menu
     |-------------------
     */
     menuWrapperExist(){
-        console.log('test')
         return this.control(this.exist(this.menuWrapper), this.getMessage('menuWrapperExist'));
 	}
 	
@@ -180,8 +180,8 @@ class Menu
 	| Helper: exist
 	|----------------
 	*/
-	exist($item){
-		return $item.length;
+	exist(item){
+		return item !== null;
 	}
 
 	
@@ -208,17 +208,11 @@ class Menu
 	| Helper: dispachEvent
 	|-----------------------
 	*/
-	dispachEvent($element, eventName, datas = null){
-		var event = $.Event(eventName);
+	dispachEvent(element, eventName, datas = {}){
+        const event = new CustomEvent(eventName, { detail : datas });
 
-		if(datas !== null){
-			$.each(datas, function(key, value){
-				event[key] = value
-			});
-		}
-
-		$element.trigger(event);
-	}
+        element.dispatchEvent(event);
+    }
 
     /**
 	|

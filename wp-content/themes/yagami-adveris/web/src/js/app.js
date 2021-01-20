@@ -2,32 +2,45 @@
 |
 | Importing Libs 
 |------------------
+
+//import Swiper from 'swiper/js/swiper.min';
+import { gsap } from "gsap";
+import CustomEase from "@lib/gsap-pro/CustomEase";
+//import DrawSVGPlugin from "@lib/gsap-pro/DrawSVGPlugin";
+import SplitText from "@lib/gsap-pro/SplitText";
+import Plyr from 'plyr/src/js/plyr';
+//import ScrollTrigger from "gsap/ScrollTrigger";
+//import LocomotiveScroll from '@lib/locomotive-scroll/src/locomotive-scroll';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+//import { CustomEase } from "gsap/CustomEase";
+//import { SplitText } from "gsap/SplitText";
+gsap.registerPlugin(ScrollTrigger);
+//gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(CustomEase);
 */
-require('@lib/iziModal/js/iziModal.js')($); //désolé
-import gsap from "gsap";
 import Swiper from 'swiper/js/swiper.min';
-//import { TweenMax } from "gsap/TweenMax";
-//import { TimelineMax } from "gsap/TimelineMax";
-//import { TweenMax, TimelineMax } from "gsap/TweenMax";
-//import CustomEase from "@lib/gsap-pro/CustomEase";
-//import SplitText from "@lib/gsap-pro/SplitText";
-//import ScrollTo from "gsap/ScrollToPlugin"; 
-//import 'scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js';
-import 'scrollmagic/scrollmagic/uncompressed/plugins/jquery.ScrollMagic.js';
-import 'scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js';
-import ScrollMagic from 'scrollmagic';
-import Scrollbar from 'smooth-scrollbar';
+import gsap from "gsap";
+//import CustomEase from "gsap/CustomEase";
+//import DrawSVGPlugin from "@lib/gsap-pro/DrawSVGPlugin";
+import SplitText from "@lib/gsap-pro/SplitText";
+import Plyr from 'plyr/src/js/plyr';
+import ScrollTrigger from "gsap/ScrollTrigger";
+//import LocomotiveScroll from '@lib/locomotive-scroll/src/locomotive-scroll';
+
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(CustomEase);
+
 
 /*
 |
 | Importing Components
 |-----------------------
 */
-import CookieManager from '@components/cookie-manager';
 import customGoogleMap from '@components/custom-google-map.js';
 import MaterializeForm from '@components/materialize-form.js';
 import Kira from '@components/kira.js';
 import Menu from '@components/menu.js';
+import Loader from '@components/loader.js';
 
 /*
 |
@@ -43,9 +56,9 @@ import Router from '@utils/router.js';
 */
 import * as app from '@components/global.js';
 import main from '@pages/main.js';
+//import home from '@pages/home.js';
 import news from '@pages/news.js';
 import animations from '@pages/animations.js';
-import sample from '@pages/sample.js';
 import contact from '@pages/contact.js';
 
 /*
@@ -56,26 +69,26 @@ import contact from '@pages/contact.js';
 const routes = new Router([
     {
         'file': animations,
-        'dependencies': [app, Menu, Kira, ScrollMagic, CustomEase]
+        'dependencies': [app, gsap, ScrollTrigger, CustomEase, Menu, Kira,  Loader, Swiper]
     },
 	{
 		'file': main, 
-		'dependencies': [app, CookieManager]
+		'dependencies': [app, gsap, Swiper, Plyr]
+    },
+    {
+		'file': home, 
+        'dependencies': [app, gsap, ScrollTrigger, MaterializeForm],
+        'resolve': '#page-home'
+    },
+    {
+		'file': product, 
+		'dependencies': [app, gsap, ScrollTrigger],
+		'resolve': '#page-product'
     },
     {
 		'file': news, 
 		'dependencies': [app],
 		'resolve': '#page-news-archive'
-    },
-	{
-		'file': sample, 
-		'dependencies': [app],
-		'resolve': '#page-sample'
-    },
-    {
-        'file': contact,
-        'dependencies': [app, MaterializeForm, customGoogleMap],
-        'resolve': '#page-contact'
     }
 ]);
 

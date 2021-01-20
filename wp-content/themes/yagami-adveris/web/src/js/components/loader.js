@@ -1,3 +1,4 @@
+import gsap from "gsap";
 /*
 |--------------------------------------------------------------------------------
 |                                   Loader
@@ -20,10 +21,10 @@ class Loader
     | Constructor
     |--------------
     */
-    constructor($loaderWrapper, params = {}) {
+    constructor(loaderWrapper, params = {}) {
 		this.bindMethods();
 
-        this.loaderWrapper  = $loaderWrapper;
+        this.loaderWrapper  = loaderWrapper;
 		this.loaderTimeline = this.initTimeline();
         this.params         = this.initParams(params);
 
@@ -68,7 +69,7 @@ class Loader
 	|---------------
 	*/
 	initTimeline(){
-		return new TimelineMax({ paused: true, onComplete: this.handleTimelineComplete });
+		return gsap.timeline({ paused: true, onComplete: this.handleTimelineComplete });
     }
 
 
@@ -104,7 +105,7 @@ class Loader
 	|-----------------------
     */
     watchWindowLoadEvent(){
-        $(window).on('load', () => this.windowLoaded = true);
+        window.addEventListener('load', () => this.windowLoaded = true, false)
     }
     
 
@@ -116,7 +117,7 @@ class Loader
     runLoading(){
         const duration = this.estimatedTime / 1000;
 
-        TweenMax.to(this.progress, duration, { value: 100, onUpdate: this.handleProgress, onComplete: this.handleComplete });
+        gsap.to(this.progress, duration, { value: 100, onUpdate: this.handleProgress, onComplete: this.handleComplete });
     }
     
 
@@ -146,7 +147,7 @@ class Loader
         const { useWindowLoad } = this.params;
 
         if (useWindowLoad){
-            $(window).on('load', () => this.loaded());
+            window.addEventListener('load', () => this.loaded(), false)
         } else {
             if (!loadedFired){
                 this.loaded();
@@ -164,7 +165,7 @@ class Loader
     loaded(){
         const { onProgress, onLoad } = this.params;
         onLoad();
-        this.dispachEvent($('body'), 'loader:complete');
+        this.dispachEvent(document.querySelector('body'), 'loader:complete');
 
         this.loaderTimeline.play();
     }
@@ -196,16 +197,10 @@ class Loader
 	| Helper: dispachEvent
 	|-----------------------
 	*/
-	dispachEvent($element, eventName, datas = null){
-		var event = $.Event(eventName);
+	dispachEvent(element, eventName, datas = {}){
+        const event = new CustomEvent(eventName, { detail : datas });
 
-		if(datas !== null){
-			$.each(datas, function(key, value){
-				event[key] = value
-			});
-		}
-
-		$element.trigger(event);
+        element.dispatchEvent(event);
     }
     
 
@@ -215,11 +210,11 @@ class Loader
 	|-----------------------------
 	*/
     loaderWrapperExist(){
-        if(!this.loaderWrapper.length){
-            console.error('LoaderManager: $loaderWrapper specified as first parameter not exist:' + this.loaderWrapper);
+        if(this.loaderWrapper === null){
+            console.error('LoaderManager: loaderWrapper specified as first parameter not exist:' + this.loaderWrapper);
         }
         
-        return this.loaderWrapper.length;
+        return this.loaderWrapper !== null;
     }
 }
 

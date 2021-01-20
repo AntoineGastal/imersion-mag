@@ -23,16 +23,10 @@ export function dump(value){
 | Dispatch event
 |-----------------
 */
-export function dispachEvent($element, eventName, datas = null){
-	var event = $.Event(eventName);
+export function dispachEvent(element, eventName, datas = {}){
+    const event = new CustomEvent(eventName, { detail : datas });
 
-	if(datas !== null){
-		for(let [key, value] of Object.entries(datas)){
-			event[key] = value
-		}
-	}
-
-	$element.trigger(event);
+    element.dispatchEvent(event);
 }
 
 /*
@@ -102,4 +96,34 @@ export function getCookie(cname) {
 
 export function deleteCookie(name) {
   document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
+
+/*
+|
+| LocomotiveScroll
+|-------------------
+*/
+export function updateLocomotiveScroll() {
+    if (window.locomotive != null) {
+        window.locomotive.update();
+    }
+}
+
+export function stopLocomotiveScroll() {
+    if (window.locomotive != null) {
+        window.locomotive.stop();
+    }
+}
+
+export function startLocomotiveScroll() {
+    if (window.locomotive != null) {
+        window.locomotive.start();
+    }
+}
+
+export function scrollTo(target, offset) {
+    if (window.locomotive != null) {
+        window.locomotive.scrollTo(document.querySelector(target), offset);
+    }
 }
