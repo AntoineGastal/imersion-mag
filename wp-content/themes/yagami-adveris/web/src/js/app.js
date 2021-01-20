@@ -3,12 +3,12 @@
 | Importing Libs 
 |------------------
 
-//import Swiper from 'swiper/js/swiper.min';
+
 import { gsap } from "gsap";
 import CustomEase from "@lib/gsap-pro/CustomEase";
 //import DrawSVGPlugin from "@lib/gsap-pro/DrawSVGPlugin";
 import SplitText from "@lib/gsap-pro/SplitText";
-import Plyr from 'plyr/src/js/plyr';
+
 //import ScrollTrigger from "gsap/ScrollTrigger";
 //import LocomotiveScroll from '@lib/locomotive-scroll/src/locomotive-scroll';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -30,7 +30,8 @@ gsap.registerPlugin(CustomEase);
 //gsap.registerPlugin(ScrollTrigger);
 //gsap.registerPlugin(CustomEase);
 
-
+import Swiper from 'swiper/js/swiper.min';
+import Plyr from 'plyr/src/js/plyr';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
