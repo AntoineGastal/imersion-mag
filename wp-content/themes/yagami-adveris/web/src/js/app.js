@@ -64,7 +64,7 @@ import Router from '@utils/router.js';
 */
 import * as app from '@components/global.js';
 import main from '@pages/main.js';
-//import home from '@pages/home.js';
+import home from '@pages/home.js';
 import news from '@pages/news.js';
 import animations from '@pages/animations.js';
 import contact from '@pages/contact.js';
