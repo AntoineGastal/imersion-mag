@@ -54,7 +54,8 @@ class NewsController extends AppController
     */
     public function singleAction(){
         $this->render('news/single.twig', array(
-            'post' => new TimberPost()
+            'post' => new TimberPost(),
+            'otherposts' => new Timber\PostQuery()
         ));
     }
 

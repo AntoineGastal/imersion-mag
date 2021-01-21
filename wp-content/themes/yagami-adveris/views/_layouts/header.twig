@@ -9,7 +9,7 @@
     <div class="header-container" {# data-kira-item="fadeInUp.stagger.sm"#}>
         <div data-stagger-item>
             <a href="{{ function('home_url') }}" class="item-logo">
-                {{ function([services, 'svg'], img ~ '/icon/logo.svg') }}
+                {{ function([services, 'svg'], img ~ '/global/imersion-mag.svg') }}
             </a>
         </div>
         <nav class="item-nav">
@@ -25,6 +25,9 @@
                                 {% endfor %}
                             </ul>
                         {% endif %}
+                        <ul class="nav-drop">
+                            <li><a href="{{ function([services, 'svg'], img ~ '/icon/instagram.svg') }}</a></li>
+                        </ul>
                     </li>
                 {% endfor %}
             </ul>

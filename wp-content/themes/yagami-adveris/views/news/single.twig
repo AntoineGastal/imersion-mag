@@ -10,7 +10,7 @@
         #}
         <div class="back-btn-container pt-xl">
             <div class="container">
-                <a href="{{ blog_page_url }}" class="c-grey fs-xs tt-u">Retour aux actualités</a>
+                <a href="{{ blog_page_url }}" class="c-grey fs-xs tt-u">Back to list</a>
             </div>
         </div>
     
@@ -60,6 +60,30 @@
                 </div>
             </div>
         </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="mb-md">Other articles you might love</h2>
+                <div class="row loaded-posts mb-md-child">
+                    {% for key, value in otherposts %}
+                        <div class="col-xs-12">
+                            {{ global.card({
+                                'image'  : value.thumbnail.src,
+                                'terms'  : value.get_terms('category'),
+                                'title'  : value.title,
+                                'date'   : value.date|date('F Y')|capitalize,
+                                'content': value.content|truncate(20, true),
+                                'link'   : value.link
+                            }) }}
+                        </div>
+                    {% endfor %}
+                </div>
+                
+                {{ global.pagination({ 'pagination': posts.pagination, 'prev': 'Précédent', 'next': 'Suivant' }) }}
+            </div>
+        </section>
+
+
         
     </div>
 
