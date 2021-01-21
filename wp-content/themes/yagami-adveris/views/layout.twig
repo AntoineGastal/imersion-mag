@@ -7,6 +7,8 @@
     #}
     <head>
         {% include '_layouts/_head.twig' %}
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
     </head>
     
     {#
@@ -28,7 +30,7 @@
         |---------
         #}
         
-        <div id="page-loader" class="page-loader">
+        <div id="page-loader" class="page-loader" style="display:none;">
             <script>
                 if(sessionStorage.getItem('loaded_once') === null){
                     document.getElementById('page-loader').classList.add('active');

@@ -85,11 +85,11 @@
     {% set title   = params.title  %}
     {% set content = params.content %}
 
-    <section class="banner {{ classes }}" style="background-image: url('{{ image }}')" data-kira-timeline-onload>
+    <section class="banner {{ classes }}" style="background-image: url('{{ image }}')">
         <div class="item-content">
             <div class="container">
-                <h1 class="title-xxl item-title mb-md c-white" {# data-kira-item="splitline" data-splittext="lines, words, chars"  data-start="0.2" #}>{{ title }}</h1>
-                <div class="item-text" data-kira-item="fadeInUp" data-start="-=1">
+                <h1 class="title-xxl item-title mb-md c-white" style="font-family: 'Tenor Sans', sans-serif;" >{{ title }}</h1>
+                <div class="item-text" >
                     <div class="row">
                         <div class="col-lg-7">
                             <div class="cms c-white">
