@@ -24,7 +24,7 @@
                 <h2 class="mb-md">Latest articles</h2>
                 <div class="row loaded-posts mb-md-child">
                     {% for key, value in posts %}
-                        <div class="col-xs-12">
+                        <div class="col-sm-6">
                             {{ global.card({
                                 'image'  : value.thumbnail.src,
                                 'terms'  : value.get_terms('category'),
